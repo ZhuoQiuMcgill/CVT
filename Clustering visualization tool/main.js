@@ -1,35 +1,51 @@
 // Initialize an array to store the points for featureB
-let points = [];
+let canvas_points = [];
 let isCalculating = false;
+let doneCalculation = false;
 let zoomLevel = 1;
 let offsetX = 0;
 let offsetY = 0;
 let isBrushMode = false;  // 刷子模式标志
 let brushRadius = 40;  // 刷子的半径
+let brushDensity = 10; // 刷子密度
 let firstSelectedPoint = null;
 let secondSelectedPoint = null;
+let importedJSONData = null;  // 用于存储导入的 JSON 数据
+let maxFrame = 10;  // 最大帧数
+let currentFrame = 0; // 当前帧数
+let clusterColorMap = {};  // 动态生成的cluster与颜色的映射
 
 
 // Get the canvas and context for featureB
 const main_canvas = document.getElementById('main_canvas');
-const ctxB = main_canvas.getContext('2d');
+const ctx = main_canvas.getContext('2d');
 
 
 /** 画布功能 */
 let pointRadius = 4;
 let selectedPoint = null;  // 用于跟踪当前选中的点
 
+function applyCanvasTransformations() {
+    // 保存当前的绘图状态
+    ctx.save();
+
+    // 应用平移和缩放
+    ctx.translate(main_canvas.width / 2, main_canvas.height / 2);
+    ctx.scale(zoomLevel, zoomLevel);
+    ctx.translate(-main_canvas.width / 2, -main_canvas.height / 2);
+    ctx.translate(offsetX, offsetY);
+}
+
+function restoreCanvasTransformations() {
+    // 恢复之前保存的绘图状态
+    ctx.restore();
+}
+
 function redrawAll() {
     clearCanvas();
-    ctxB.save();
+    applyCanvasTransformations();
 
-    ctxB.translate(main_canvas.width / 2, main_canvas.height / 2);
-    ctxB.scale(zoomLevel, zoomLevel);
-    ctxB.translate(-main_canvas.width / 2, -main_canvas.height / 2);
-
-    ctxB.translate(offsetX, offsetY);
-
-    points.forEach(point => drawPoint(point.x, point.y));
+    canvas_points.forEach(point => drawPoint(point.x, point.y));
 
     if (firstSelectedPoint) {
         drawSelectedPoint(firstSelectedPoint.x, firstSelectedPoint.y);
@@ -44,7 +60,7 @@ function redrawAll() {
         drawSelectedPoint(firstSelectedPoint.x, firstSelectedPoint.y, radius);
     }
 
-    ctxB.restore();
+    restoreCanvasTransformations();
 }
 
 
@@ -65,25 +81,25 @@ function convertMouseToCanvasCoords(event, canvasElement, offsetX, offsetY, zoom
 }
 
 
-function drawPoint(x, y) {
-    ctxB.fillStyle = 'black';
-    ctxB.beginPath();
-    ctxB.arc(x, y, pointRadius, 0, Math.PI * 2);
-    ctxB.fill();
+function drawPoint(x, y, color = 'black') {
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.arc(x, y, pointRadius, 0, Math.PI * 2);
+    ctx.fill();
 }
 
 function drawSelectedPoint(x, y, radius = pointRadius * 2) {
-    ctxB.strokeStyle = 'blue';
-    ctxB.lineWidth = 1;
-    ctxB.beginPath();
-    ctxB.arc(x, y, radius, 0, Math.PI * 2);
-    ctxB.stroke();
+    ctx.strokeStyle = 'blue';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.arc(x, y, radius, 0, Math.PI * 2);
+    ctx.stroke();
 }
 
 
 // Function to clear the featureB canvas
 function clearCanvas() {
-    ctxB.clearRect(0, 0, main_canvas.width, main_canvas.height);
+    ctx.clearRect(0, 0, main_canvas.width, main_canvas.height);
 }
 
 function isClicked(point1, point2, radius = pointRadius * 2) {
@@ -92,7 +108,7 @@ function isClicked(point1, point2, radius = pointRadius * 2) {
 }
 
 function updateTotalPoints() {
-    document.getElementById('pointInfo').innerHTML = 'Total points: ' + points.length;
+    document.getElementById('pointInfo').innerHTML = 'Total points: ' + canvas_points.length;
 }
 
 
@@ -104,40 +120,47 @@ main_canvas.addEventListener('mousedown', function (event) {
     const clickedPoint = {x, y};
     isMouseDown = true;
 
-    const existingPoint = points.find(point => isClicked(point, clickedPoint));
+    if (doneCalculation) {
+        renderAll();
+    }
+    else {
+        const existingPoint = canvas_points.find(point => isClicked(point, clickedPoint));
 
-    if (existingPoint) {
-        if (isCalculating) {
-            document.getElementById('pointInfo').innerHTML =
-                `Total points: ${points.length}<br> Point coordinates:<br> x = ${existingPoint.x.toFixed(2)}<br> y = ${existingPoint.y.toFixed(2)}`;
+        if (existingPoint) {
+            if (isCalculating) {
+                document.getElementById('pointInfo').innerHTML =
+                    `Total points: ${canvas_points.length}<br> Point coordinates:<br> x = ${existingPoint.x.toFixed(2)}<br> y = ${existingPoint.y.toFixed(2)}`;
 
-            if (event.shiftKey) {
-                if (firstSelectedPoint) {
-                    secondSelectedPoint = existingPoint;
+                if (event.shiftKey) {
+                    if (firstSelectedPoint) {
+                        secondSelectedPoint = existingPoint;
+                    } else {
+                        firstSelectedPoint = existingPoint;
+                    }
                 } else {
                     firstSelectedPoint = existingPoint;
+                    secondSelectedPoint = null;
                 }
-            } else {
-                firstSelectedPoint = existingPoint;
-                secondSelectedPoint = null;
             }
-        }
-    } else {
-        if (!isCalculating) {
-            if (event.button === 0) {
-                points.push({x, y});
-            } else if (event.button === 2) {
-                points.pop();
+        } else {
+            if (!isCalculating) {
+                if (event.button === 0) {
+                    canvas_points.push({x, y});
+                } else if (event.button === 2) {
+                    canvas_points.pop();
+                }
+                updateTotalPoints();
             }
+            selectedPoint = null;
+            firstSelectedPoint = null;
+            secondSelectedPoint = null;
             updateTotalPoints();
         }
-        selectedPoint = null;
-        firstSelectedPoint = null;
-        secondSelectedPoint = null;
-        updateTotalPoints();
+
+        redrawAll();
     }
 
-    redrawAll();
+
 });
 
 
@@ -147,7 +170,7 @@ main_canvas.addEventListener('mousemove', function (event) {
     currentMousePos.x = x;
     currentMousePos.y = y;
 
-    if (isMouseDown && isBrushMode && !isCalculating) {
+    if (isMouseDown && isBrushMode && !isCalculating && !doneCalculation) {
         addBrushPoints(x, y);
         updateTotalPoints();
         redrawAll();
@@ -165,8 +188,8 @@ main_canvas.addEventListener('contextmenu', function (event) {
     event.preventDefault();
 });
 
-function addBrushPoints(centerX, centerY, numPoints = 10) {
-    for (let i = 0; i < numPoints; i++) {
+function addBrushPoints(centerX, centerY) {
+    for (let i = 0; i < brushDensity; i++) {
         const angle = Math.random() * Math.PI * 2;
         const radius = Math.sqrt(Math.random()) * brushRadius;
         const x = centerX + radius * Math.cos(angle);
@@ -174,36 +197,36 @@ function addBrushPoints(centerX, centerY, numPoints = 10) {
         const newPoint = {x, y};
 
         // 检查新点是否与现有点太接近
-        const isTooClose = points.some(point => isClicked(point, newPoint, pointRadius * 2));
+        const isTooClose = canvas_points.some(point => isClicked(point, newPoint, pointRadius * 2));
 
         if (!isTooClose) {
-            points.push(newPoint);
+            canvas_points.push(newPoint);
         }
     }
 }
 
 // 在刷子模式下，鼠标悬浮时绘制一个圆
 main_canvas.addEventListener('mousemove', function (event) {
-    if (isBrushMode && !isCalculating) {
+    if (isBrushMode && !isCalculating && !doneCalculation) {
         const rect = main_canvas.getBoundingClientRect();
         const x = (event.clientX - rect.left - offsetX) / zoomLevel;
         const y = (event.clientY - rect.top - offsetY) / zoomLevel;
         redrawAll();  // 重新绘制所有点
 
         // 保存当前的绘图状态
-        ctxB.save();
+        ctx.save();
         // 应用平移和缩放
-        ctxB.translate(offsetX, offsetY);
-        ctxB.scale(zoomLevel, zoomLevel);
+        ctx.translate(offsetX, offsetY);
+        ctx.scale(zoomLevel, zoomLevel);
 
         // 绘制悬浮显示的圆
-        ctxB.beginPath();
-        ctxB.arc(x, y, brushRadius, 0, Math.PI * 2);
-        ctxB.strokeStyle = 'black';
-        ctxB.stroke();
+        ctx.beginPath();
+        ctx.arc(x, y, brushRadius, 0, Math.PI * 2);
+        ctx.strokeStyle = 'black';
+        ctx.stroke();
 
         // 恢复之前保存的绘图状态
-        ctxB.restore();
+        ctx.restore();
     }
 });
 
@@ -234,7 +257,8 @@ main_canvas.addEventListener('wheel', function (event) {
     }
 
     // 重新绘制所有内容
-    redrawAll();
+    if (doneCalculation) {renderAll();}
+    else {redrawAll();}
 });
 
 
@@ -258,15 +282,15 @@ document.addEventListener('keydown', function (event) {
         default:
             return;  // 如果按下的不是 WASD，不执行任何操作
     }
-
-    redrawAll();  // 重新绘制画布以应用新的偏移量
+    if (doneCalculation) {renderAll();}
+    else {redrawAll();}
 });
 
 
 /** calculate 按钮功能 */
 // Add event listener for the Calculate button
 document.getElementById('calculate').addEventListener('click', function () {
-    if (points.length === 0) {
+    if (canvas_points.length === 0) {
         return;
     }
     isCalculating = true;
@@ -277,7 +301,7 @@ document.getElementById('calculate').addEventListener('click', function () {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({points: points})
+        body: JSON.stringify({points: canvas_points})
     }).then(response => response.json())
         .then(data => {
             console.log('Success:', data);
@@ -291,40 +315,195 @@ document.getElementById('calculate').addEventListener('click', function () {
 /** clear 按钮功能 */
 document.getElementById('clear').addEventListener('click', function () {
     isCalculating = false;      // 重置 isCalculating 变量
-    points = [];                // 清空点数组
+    canvas_points = [];         // 清空点数组
     selectedPoint = null;       // 清空选中的点
     firstSelectedPoint = null;
     secondSelectedPoint = null;
     zoomLevel = 1;              // 重置 zoomLevel 为 1（无缩放）
     redrawAll();                // 重新绘制画布
     updateTotalPoints();        // 重设点总数
+    importedJSONData = null;    // 清空json
+
 });
 
 
 /** goto 按钮功能 */
-// Placeholder for max_length, which will be received from the backend later
-let maxLength = 10;  // Initialize to 0
-
-// Function to update maxLength from the backend
-async function updateMaxLength() {
-    // Fetch the max_length from the backend
-    // Replace the URL and key according to your actual API
-    const response = await fetch('/api/get_max_length/');
-    const data = await response.json();
-    maxLength = data.max_length;
-
-    // Update the max attribute of the input element
-    document.getElementById('gotoPage').max = maxLength;
-}
-
 // Add event listener to the gotoPageB input to enforce the min and max values
 document.getElementById('gotoPage').addEventListener('input', function () {
     const input = document.getElementById('gotoPage');
     if (parseInt(input.value) < 0) {
         input.value = 0;
-    } else if (parseInt(input.value) > maxLength) {
-        input.value = maxLength;
+    } else if (parseInt(input.value) > maxFrame) {
+        input.value = maxFrame;
     }
 });
+
+document.getElementById('goto').addEventListener('click', function () {
+    const input = document.getElementById('gotoPage');
+    currentFrame = parseInt(input.value);
+    document.getElementById('gotoPage').innerText = currentFrame;
+    renderAll();
+});
+
+document.getElementById("show").addEventListener('click', function () {
+    document.getElementById('gotoPage').value = currentFrame;
+    renderAll();
+})
+
+document.getElementById("prev").addEventListener('click', function () {
+    currentFrame -= 1;
+    if (currentFrame < 0) {
+        currentFrame = 0;
+    }
+    document.getElementById('gotoPage').value = currentFrame;
+    renderAll();
+})
+
+document.getElementById("next").addEventListener('click', function () {
+    currentFrame += 1;
+    if (currentFrame > maxFrame) {
+        currentFrame = maxFrame;
+    }
+    document.getElementById('gotoPage').value = currentFrame;
+    renderAll();
+})
+
+
+/** 导入json文件 */
+document.getElementById('jsonFileInput').addEventListener('change', function (event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            try {
+                importedJSONData = JSON.parse(e.target.result);
+                console.log("JSON data imported successfully:", importedJSONData);
+                // 初始化 clusterColorMap
+                initializeClusterColorMap();
+            } catch (error) {
+                console.error("Error parsing JSON:", error);
+            }
+        };
+        reader.readAsText(file);
+    }
+});
+
+// 在导入JSON数据后调用此函数以初始化clusterColorMap
+function initializeClusterColorMap() {
+    clusterColorMap = {};
+    maxFrame = importedJSONData.frame_data.length - 1;  // 设置 maxFrame 的值
+    doneCalculation = true;
+    currentFrame = 0;
+    centerCanvasToMassCenter();
+    importedJSONData.frame_data.forEach(frameData => {
+        frameData.global_env.clusters.forEach(cluster => {
+            const clusterId = cluster.id;
+            if (!clusterColorMap[clusterId]) {
+                clusterColorMap[clusterId] = generateRandomColor();
+            }
+        });
+    });
+}
+
+// 计算镜头中心点
+function centerCanvasToMassCenter() {
+    let totalX = 0;
+    let totalY = 0;
+    let pointCount = 0;
+
+    const firstFrame = importedJSONData.frame_data.find(frame => frame.id===0);
+    firstFrame.global_env.points.forEach(point => {
+        totalX += point.x;
+        totalY += point.y;
+        pointCount++;
+    });
+
+    if (pointCount === 0) {
+        return; // 如果没有点，直接返回
+    }
+
+    // 计算质量中心
+    const massCenterX = totalX / pointCount;
+    const massCenterY = totalY / pointCount;
+
+    // 更新偏移量以将质量中心设置为画布的中心
+    offsetX = main_canvas.width / 2 - massCenterX;
+    offsetY = main_canvas.height / 2 - massCenterY;
+}
+
+
+
+
+
+// 用来计算两个颜色之间的距离，用于判断颜色的接近程度
+function colorDistance(color1, color2) {
+    const r1 = parseInt(color1.substring(1, 3), 16);
+    const g1 = parseInt(color1.substring(3, 5), 16);
+    const b1 = parseInt(color1.substring(5, 7), 16);
+
+    const r2 = parseInt(color2.substring(1, 3), 16);
+    const g2 = parseInt(color2.substring(3, 5), 16);
+    const b2 = parseInt(color2.substring(5, 7), 16);
+
+    return Math.sqrt((r1 - r2) ** 2 + (g1 - g2) ** 2 + (b1 - b2) ** 2);
+}
+
+function generateRandomColor() {
+    let color;
+    let isUnique = false;
+    let isDistinct = true;
+
+    while (!isUnique || !isDistinct) {
+        color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += '0123456789ABCDEF'[Math.floor(Math.random() * 16)];
+        }
+
+        // 避免生成接近白色的颜色
+        if (colorDistance(color, '#FFFFFF') < 100) {
+            continue;
+        }
+
+        isUnique = !Object.values(clusterColorMap).includes(color);
+
+        // 确保新颜色与已有颜色有足够的对比度
+        isDistinct = Object.values(clusterColorMap).every(existingColor => colorDistance(color, existingColor) > 100);
+    }
+
+    return color;
+}
+
+
+
+
+function renderAll() {
+    // 清空画布
+    clearCanvas();
+    applyCanvasTransformations();
+
+    // 从importedJSONData中获取当前帧的数据
+    const frameData = importedJSONData.frame_data.find(frame => frame.id === currentFrame);
+
+    if (!frameData) {
+        console.error("No data for the current frame");
+        return;
+    }
+
+    const pointsData = frameData.global_env.points;
+    const clustersData = frameData.global_env.clusters;
+
+    // 渲染每一个点
+    pointsData.forEach(point => {
+        const x = point.x;
+        const y = point.y;
+        const color = clusterColorMap[point.label];
+        drawPoint(x, y, color);
+    });
+
+    // 恢复之前保存的绘图状态
+    restoreCanvasTransformations();
+}
+
+
 
 
