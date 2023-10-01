@@ -527,7 +527,7 @@ function renderAll() {
     const pointsData = currentFrameData.global_env.points;
     const clustersData = currentFrameData.global_env.clusters;
     const proximity = currentFrameData.proximity;
-
+    let info_text = '';
 
     // 渲染每一个点
     pointsData.forEach(point => {
@@ -538,24 +538,28 @@ function renderAll() {
             drawPoint(x, y, 'red', 1.5 * pointRadius);
         } else if (point.label === proximity.merging_clusters.find(cluster=>cluster.id===1).cluster_id) {
             drawPoint(x, y, 'blue', 1.5 * pointRadius);
+
         } else if (point.label === selectedCluster){
             drawPoint(x, y, color, pointRadius * 1.5);
         } else {
             drawPoint(x, y, color);
         }
+
     });
+    console.log(info_text);
 
     let firstRefPoint = proximity.ref_points.find(point=>point.id===0);
     let secondRefPoint = proximity.ref_points.find(point=>point.id===1);
     drawSelectedPoint(firstRefPoint.x, firstRefPoint.y, '#00FF00');
     drawSelectedPoint(secondRefPoint.x, secondRefPoint.y, '#00FF00');
-
-
+    info_text = proximity.info;
+    document.getElementById("pointInfo").innerHTML = info_text;
 
     if (selectedPoint) {
         const x = selectedPoint.x;
         const y = selectedPoint.y;
         drawSelectedPoint(x, y);
+        document.getElementById("pointInfo").innerHTML = info_text + selectedPoint.info;
     }
 
     // 恢复之前保存的绘图状态
