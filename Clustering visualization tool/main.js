@@ -17,6 +17,7 @@ let currentFrame = 0; // 当前帧数
 let currentFrameData = null; // 当前帧数据集
 let clusterColorMap = {}; // 动态生成的cluster与颜色的映射
 let selectedPoint = null; // 用于跟踪当前选中的点
+let selectedPointInfo = null;
 let selectedCluster = null; // 用于跟踪当前选中的cluster
 
 // Get the canvas and context for featureB
@@ -119,7 +120,7 @@ function updateTotalPoints() {
 // 更新已选择的点的信息
 function updateSelectedPoint() {
     if (selectedPoint) {
-        selectedPoint = currentFrameData.global_env.points.find(point => isClickedPos(point.x, point.y, selectedPoint, pointRadius));
+        selectedPointInfo = selectedPoint.frames[currentFrame];
     }
 }
 
@@ -128,24 +129,28 @@ let isMouseDown = false;  // 用于跟踪鼠标是否被按下
 let currentMousePos = {x: 0, y: 0};  // 用于存储当前鼠标位置
 // 当鼠标按下时
 main_canvas.addEventListener('mousedown', function (event) {
+
+    // 转换鼠标坐标
     const {x, y} = convertMouseToCanvasCoords(event, main_canvas, offsetX, offsetY, zoomLevel);
     const clickedPoint = {x, y};
     isMouseDown = true;
 
     if (doneCalculation) {
-        let json_points = currentFrameData.global_env.points;
+        let json_points = importedJSONData.points;
         const existingPoint = json_points.find(point => isClickedPos(point.x, point.y, clickedPoint));
 
         if (existingPoint) {
             selectedPoint = existingPoint;
-            document.getElementById('pointInfo').innerHTML = existingPoint.info
+            selectedPointInfo = selectedPoint.frames[currentFrame];
+            document.getElementById('pointInfo').innerHTML = selectedPointInfo.info
             if (event.shiftKey) {
-                selectedCluster = existingPoint.label;
+                selectedCluster = selectedPointInfo.label;
             }
             renderAll();
         } else {
             selectedCluster = null;
             selectedPoint = null;
+            selectedPointInfo = null;
             renderAll();
         }
     } else {
@@ -349,6 +354,7 @@ document.getElementById('clear').addEventListener('click', function () {
     canvas_points = [];         // 清空点数组
     selectedCluster = null;
     selectedPoint = null;       // 清空选中的点
+    selectedPointInfo = null;
     firstSelectedPoint = null;
     secondSelectedPoint = null;
     zoomLevel = 1;              // 重置 zoomLevel 为 1（无缩放）
@@ -375,15 +381,15 @@ document.getElementById('gotoPage').addEventListener('input', function () {
 document.getElementById('goto').addEventListener('click', function () {
     const input = document.getElementById('gotoPage');
     currentFrame = parseInt(input.value);
-    currentFrameData = importedJSONData.frame_data.find(frame => frame.id === currentFrame);
     document.getElementById('gotoPage').value = currentFrame;
+    currentFrameData = importedJSONData.frame_data[currentFrame];
     updateSelectedPoint()
     renderAll();
 });
 
 document.getElementById("show").addEventListener('click', function () {
     document.getElementById('gotoPage').value = currentFrame;
-    currentFrameData = importedJSONData.frame_data.find(frame => frame.id === currentFrame);
+    currentFrameData = importedJSONData.frame_data[currentFrame];
     updateSelectedPoint()
     renderAll();
 })
@@ -394,7 +400,7 @@ document.getElementById("prev").addEventListener('click', function () {
         currentFrame = 0;
     }
     document.getElementById('gotoPage').value = currentFrame;
-    currentFrameData = importedJSONData.frame_data.find(frame => frame.id === currentFrame);
+    currentFrameData = importedJSONData.frame_data[currentFrame];
     updateSelectedPoint()
     renderAll();
 })
@@ -405,7 +411,7 @@ document.getElementById("next").addEventListener('click', function () {
         currentFrame = maxFrame;
     }
     document.getElementById('gotoPage').value = currentFrame;
-    currentFrameData = importedJSONData.frame_data.find(frame => frame.id === currentFrame);
+    currentFrameData = importedJSONData.frame_data[currentFrame];
     updateSelectedPoint()
     renderAll();
 })
