@@ -5,16 +5,19 @@ let doneCalculation = false;
 let zoomLevel = 1;
 let offsetX = 0;
 let offsetY = 0;
-let isBrushMode = false;  // 刷子模式标志
-let brushRadius = 40;  // 刷子的半径
+let pointRadius = 4; // 点半径
+let isBrushMode = false; // 刷子模式标志
+let brushRadius = 40; // 刷子的半径
 let brushDensity = 10; // 刷子密度
 let firstSelectedPoint = null;
 let secondSelectedPoint = null;
-let importedJSONData = null;  // 用于存储导入的 JSON 数据
-let maxFrame = 10;  // 最大帧数
+let importedJSONData = null; // 用于存储导入的 JSON 数据
+let maxFrame = 10; // 最大帧数
 let currentFrame = 0; // 当前帧数
-let clusterColorMap = {};  // 动态生成的cluster与颜色的映射
-
+let currentFrameData = null; // 当前帧数据集
+let clusterColorMap = {}; // 动态生成的cluster与颜色的映射
+let selectedPoint = null; // 用于跟踪当前选中的点
+let selectedCluster = null; // 用于跟踪当前选中的cluster
 
 // Get the canvas and context for featureB
 const main_canvas = document.getElementById('main_canvas');
@@ -22,9 +25,6 @@ const ctx = main_canvas.getContext('2d');
 
 
 /** 画布功能 */
-let pointRadius = 4;
-let selectedPoint = null;  // 用于跟踪当前选中的点
-
 function applyCanvasTransformations() {
     // 保存当前的绘图状态
     ctx.save();
@@ -81,16 +81,16 @@ function convertMouseToCanvasCoords(event, canvasElement, offsetX, offsetY, zoom
 }
 
 
-function drawPoint(x, y, color = 'black') {
+function drawPoint(x, y, color = 'black', radius = pointRadius) {
     ctx.fillStyle = color;
     ctx.beginPath();
-    ctx.arc(x, y, pointRadius, 0, Math.PI * 2);
+    ctx.arc(x, y, radius, 0, Math.PI * 2);
     ctx.fill();
 }
 
-function drawSelectedPoint(x, y, radius = pointRadius * 2) {
-    ctx.strokeStyle = 'blue';
-    ctx.lineWidth = 1;
+function drawSelectedPoint(x, y, color = 'red', radius = pointRadius * 2) {
+    ctx.strokeStyle = color;
+    ctx.lineWidth = pointRadius / 4;
     ctx.beginPath();
     ctx.arc(x, y, radius, 0, Math.PI * 2);
     ctx.stroke();
@@ -107,8 +107,20 @@ function isClicked(point1, point2, radius = pointRadius * 2) {
     return distance <= radius;
 }
 
+function isClickedPos(x, y, click_point, radius = pointRadius * 2) {
+    const distance = Math.sqrt(Math.pow(x - click_point.x, 2) + Math.pow(y - click_point.y, 2));
+    return distance <= radius;
+}
+
 function updateTotalPoints() {
     document.getElementById('pointInfo').innerHTML = 'Total points: ' + canvas_points.length;
+}
+
+// 更新已选择的点的信息
+function updateSelectedPoint() {
+    if (selectedPoint) {
+        selectedPoint = currentFrameData.global_env.points.find(point => isClickedPos(point.x, point.y, selectedPoint, pointRadius));
+    }
 }
 
 
@@ -121,9 +133,22 @@ main_canvas.addEventListener('mousedown', function (event) {
     isMouseDown = true;
 
     if (doneCalculation) {
-        renderAll();
-    }
-    else {
+        let json_points = currentFrameData.global_env.points;
+        const existingPoint = json_points.find(point => isClickedPos(point.x, point.y, clickedPoint));
+
+        if (existingPoint) {
+            selectedPoint = existingPoint;
+            document.getElementById('pointInfo').innerHTML = existingPoint.info
+            if (event.shiftKey) {
+                selectedCluster = existingPoint.label;
+            }
+            renderAll();
+        } else {
+            selectedCluster = null;
+            selectedPoint = null;
+            renderAll();
+        }
+    } else {
         const existingPoint = canvas_points.find(point => isClicked(point, clickedPoint));
 
         if (existingPoint) {
@@ -257,8 +282,11 @@ main_canvas.addEventListener('wheel', function (event) {
     }
 
     // 重新绘制所有内容
-    if (doneCalculation) {renderAll();}
-    else {redrawAll();}
+    if (doneCalculation) {
+        renderAll();
+    } else {
+        redrawAll();
+    }
 });
 
 
@@ -282,8 +310,11 @@ document.addEventListener('keydown', function (event) {
         default:
             return;  // 如果按下的不是 WASD，不执行任何操作
     }
-    if (doneCalculation) {renderAll();}
-    else {redrawAll();}
+    if (doneCalculation) {
+        renderAll();
+    } else {
+        redrawAll();
+    }
 });
 
 
@@ -316,6 +347,7 @@ document.getElementById('calculate').addEventListener('click', function () {
 document.getElementById('clear').addEventListener('click', function () {
     isCalculating = false;      // 重置 isCalculating 变量
     canvas_points = [];         // 清空点数组
+    selectedCluster = null;
     selectedPoint = null;       // 清空选中的点
     firstSelectedPoint = null;
     secondSelectedPoint = null;
@@ -323,6 +355,8 @@ document.getElementById('clear').addEventListener('click', function () {
     redrawAll();                // 重新绘制画布
     updateTotalPoints();        // 重设点总数
     importedJSONData = null;    // 清空json
+    currentFrameData = null;    // 清空数据缓存
+    pointRadius = 4;
 
 });
 
@@ -341,12 +375,16 @@ document.getElementById('gotoPage').addEventListener('input', function () {
 document.getElementById('goto').addEventListener('click', function () {
     const input = document.getElementById('gotoPage');
     currentFrame = parseInt(input.value);
-    document.getElementById('gotoPage').innerText = currentFrame;
+    currentFrameData = importedJSONData.frame_data.find(frame => frame.id === currentFrame);
+    document.getElementById('gotoPage').value = currentFrame;
+    updateSelectedPoint()
     renderAll();
 });
 
 document.getElementById("show").addEventListener('click', function () {
     document.getElementById('gotoPage').value = currentFrame;
+    currentFrameData = importedJSONData.frame_data.find(frame => frame.id === currentFrame);
+    updateSelectedPoint()
     renderAll();
 })
 
@@ -356,6 +394,8 @@ document.getElementById("prev").addEventListener('click', function () {
         currentFrame = 0;
     }
     document.getElementById('gotoPage').value = currentFrame;
+    currentFrameData = importedJSONData.frame_data.find(frame => frame.id === currentFrame);
+    updateSelectedPoint()
     renderAll();
 })
 
@@ -365,6 +405,8 @@ document.getElementById("next").addEventListener('click', function () {
         currentFrame = maxFrame;
     }
     document.getElementById('gotoPage').value = currentFrame;
+    currentFrameData = importedJSONData.frame_data.find(frame => frame.id === currentFrame);
+    updateSelectedPoint()
     renderAll();
 })
 
@@ -392,8 +434,10 @@ document.getElementById('jsonFileInput').addEventListener('change', function (ev
 function initializeClusterColorMap() {
     clusterColorMap = {};
     maxFrame = importedJSONData.frame_data.length - 1;  // 设置 maxFrame 的值
+    pointRadius = importedJSONData.point_radius;
     doneCalculation = true;
     currentFrame = 0;
+    currentFrameData = importedJSONData.frame_data.find(frame => frame.id === 0);
     centerCanvasToMassCenter();
     importedJSONData.frame_data.forEach(frameData => {
         frameData.global_env.clusters.forEach(cluster => {
@@ -411,8 +455,7 @@ function centerCanvasToMassCenter() {
     let totalY = 0;
     let pointCount = 0;
 
-    const firstFrame = importedJSONData.frame_data.find(frame => frame.id===0);
-    firstFrame.global_env.points.forEach(point => {
+    currentFrameData.global_env.points.forEach(point => {
         totalX += point.x;
         totalY += point.y;
         pointCount++;
@@ -430,9 +473,6 @@ function centerCanvasToMassCenter() {
     offsetX = main_canvas.width / 2 - massCenterX;
     offsetY = main_canvas.height / 2 - massCenterY;
 }
-
-
-
 
 
 // 用来计算两个颜色之间的距离，用于判断颜色的接近程度
@@ -474,31 +514,49 @@ function generateRandomColor() {
 }
 
 
-
-
 function renderAll() {
     // 清空画布
     clearCanvas();
     applyCanvasTransformations();
 
-    // 从importedJSONData中获取当前帧的数据
-    const frameData = importedJSONData.frame_data.find(frame => frame.id === currentFrame);
-
-    if (!frameData) {
+    if (!currentFrameData) {
         console.error("No data for the current frame");
         return;
     }
 
-    const pointsData = frameData.global_env.points;
-    const clustersData = frameData.global_env.clusters;
+    const pointsData = currentFrameData.global_env.points;
+    const clustersData = currentFrameData.global_env.clusters;
+    const proximity = currentFrameData.proximity;
+
 
     // 渲染每一个点
     pointsData.forEach(point => {
         const x = point.x;
         const y = point.y;
         const color = clusterColorMap[point.label];
-        drawPoint(x, y, color);
+        if (point.label === proximity.merging_clusters.find(cluster=>cluster.id===0).cluster_id) {
+            drawPoint(x, y, 'red', 1.5 * pointRadius);
+        } else if (point.label === proximity.merging_clusters.find(cluster=>cluster.id===1).cluster_id) {
+            drawPoint(x, y, 'blue', 1.5 * pointRadius);
+        } else if (point.label === selectedCluster){
+            drawPoint(x, y, color, pointRadius * 1.5);
+        } else {
+            drawPoint(x, y, color);
+        }
     });
+
+    let firstRefPoint = proximity.ref_points.find(point=>point.id===0);
+    let secondRefPoint = proximity.ref_points.find(point=>point.id===1);
+    drawSelectedPoint(firstRefPoint.x, firstRefPoint.y, '#00FF00');
+    drawSelectedPoint(secondRefPoint.x, secondRefPoint.y, '#00FF00');
+
+
+
+    if (selectedPoint) {
+        const x = selectedPoint.x;
+        const y = selectedPoint.y;
+        drawSelectedPoint(x, y);
+    }
 
     // 恢复之前保存的绘图状态
     restoreCanvasTransformations();
