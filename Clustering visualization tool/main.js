@@ -443,16 +443,8 @@ function initializeClusterColorMap() {
     pointRadius = importedJSONData.point_radius;
     doneCalculation = true;
     currentFrame = 0;
-    currentFrameData = importedJSONData.frame_data.find(frame => frame.id === 0);
+
     centerCanvasToMassCenter();
-    importedJSONData.frame_data.forEach(frameData => {
-        frameData.global_env.clusters.forEach(cluster => {
-            const clusterId = cluster.id;
-            if (!clusterColorMap[clusterId]) {
-                clusterColorMap[clusterId] = generateRandomColor();
-            }
-        });
-    });
 }
 
 // 计算镜头中心点
@@ -461,7 +453,7 @@ function centerCanvasToMassCenter() {
     let totalY = 0;
     let pointCount = 0;
 
-    currentFrameData.global_env.points.forEach(point => {
+    importedJSONData.points.forEach(point => {
         totalX += point.x;
         totalY += point.y;
         pointCount++;
@@ -525,37 +517,38 @@ function renderAll() {
     clearCanvas();
     applyCanvasTransformations();
 
-    if (!currentFrameData) {
-        console.error("No data for the current frame");
-        return;
-    }
-
-    const pointsData = currentFrameData.global_env.points;
-    const clustersData = currentFrameData.global_env.clusters;
-    const proximity = currentFrameData.proximity;
+    const proximity = importedJSONData.frame_data[currentFrame].proximity;
     let info_text = '';
 
     // 渲染每一个点
-    pointsData.forEach(point => {
+    importedJSONData.points.forEach(point => {
         const x = point.x;
         const y = point.y;
-        const color = clusterColorMap[point.label];
-        if (point.label === proximity.merging_clusters.find(cluster=>cluster.id===0).cluster_id) {
+        const label = point.frames[currentFrame].label;
+
+        if (label === proximity.merging_clusters.first_cluster_id) {
             drawPoint(x, y, 'red', 1.5 * pointRadius);
-        } else if (point.label === proximity.merging_clusters.find(cluster=>cluster.id===1).cluster_id) {
+        } else if (label === proximity.merging_clusters.second_cluster_id) {
             drawPoint(x, y, 'blue', 1.5 * pointRadius);
 
-        } else if (point.label === selectedCluster){
-            drawPoint(x, y, color, pointRadius * 1.5);
         } else {
-            drawPoint(x, y, color);
+            if (!clusterColorMap[label]) {
+                clusterColorMap[label] = generateRandomColor();
+            }
+            const color = clusterColorMap[label];
+
+            if (point.label === selectedCluster){
+                drawPoint(x, y, color, pointRadius * 1.5);
+            } else {
+                drawPoint(x, y, color);
+            }
         }
 
     });
     console.log(info_text);
 
-    let firstRefPoint = proximity.ref_points.find(point=>point.id===0);
-    let secondRefPoint = proximity.ref_points.find(point=>point.id===1);
+    let firstRefPoint = proximity.ref_points[0];
+    let secondRefPoint = proximity.ref_points[1];
     drawSelectedPoint(firstRefPoint.x, firstRefPoint.y, '#00FF00');
     drawSelectedPoint(secondRefPoint.x, secondRefPoint.y, '#00FF00');
     info_text = proximity.info;
@@ -565,7 +558,7 @@ function renderAll() {
         const x = selectedPoint.x;
         const y = selectedPoint.y;
         drawSelectedPoint(x, y);
-        document.getElementById("pointInfo").innerHTML = info_text + selectedPoint.info;
+        document.getElementById("pointInfo").innerHTML = info_text + selectedPointInfo.info;
     }
 
     // 恢复之前保存的绘图状态
