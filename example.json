@@ -1,0 +1,115 @@
+{
+    "point_radius": 5,
+    "points": [
+        {
+            "x": 40,
+            "y": 40,
+            "frames": [
+                {
+                    "label": 2,
+                    "info": "points information"
+                },
+                {
+                    "label": 2,
+                    "info": "points information"
+                }
+            ]
+        },
+        {
+            "x": 40,
+            "y": 60,
+            "frames": [
+                {
+                    "label": 3,
+                    "info": "points information"
+                },
+                {
+                    "label": 2,
+                    "info": "points information"
+                }
+            ]
+        },
+        {
+            "x": 60,
+            "y": 60,
+            "frames": [
+                {
+                    "label": 1,
+                    "info": "points information"
+                },
+                {
+                    "label": 1,
+                    "info": "points information"
+                }
+            ]
+        },
+        {
+            "x": 80,
+            "y": 60,
+            "frames": [
+                {
+                    "label": 0,
+                    "info": "points information"
+                },
+                {
+                    "label": 0,
+                    "info": "points information"
+                }
+            ]
+        },
+        {
+            "x": 80,
+            "y": 40,
+            "frames": [
+                {
+                    "label": 0,
+                    "info": "points information"
+                },
+                {
+                    "label": 0,
+                    "info": "points information"
+                }
+            ]
+        }
+    ],
+    "frame_data": [
+        {
+            "clusters": [
+                {
+                    "id": 0,
+                    "info": "clusters information"
+                },
+                {
+                    "id": 1,
+                    "info": "clusters information"
+                },
+                {
+                    "id": 2,
+                    "info": "clusters information"
+                },
+                {
+                    "id": 3,
+                    "info": "clusters information"
+                }
+            ],
+            "proximity": {
+                "ref_points": [
+                    {
+                        "x": 56.25,
+                        "y": 65
+                    },
+                    {
+                        "x": 98,
+                        "y": 21.05
+                    }
+                ],
+                "merging_clusters": {
+                    "first_cluster_id": 2,
+                    "second_cluster_id": 3
+                },
+                "info": "proximity info",
+                "test_result": 0
+            }
+        }
+    ]
+}
