@@ -60,7 +60,7 @@ body {
 }
 
 
-#Total-Frames, #Total-Points, #Selected-Point {
+#Total-Frames, #Total-Points, #Selected-Point, #Point-Distance {
     margin-top: 2px;
     margin-bottom: 2px;
 }

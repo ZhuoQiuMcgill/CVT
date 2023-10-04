@@ -77,6 +77,13 @@ let selectedPoint = null;
 
 /**
  * @global
+ * @var {Object|null} secondSelectedPoint
+ * @description 用于跟踪第二个选中的点。初始值为null。
+ */
+let secondSelectedPoint = null;
+
+/**
+ * @global
  * @var {Object|null} selectedPointInfo
  * @description 存储有关当前选中点的信息。初始值为null。
  */
@@ -98,6 +105,14 @@ let preGeneratedColors = [];
 
 /**
  * @global
+ * @var {number|null} arrowKeyDownInterval
+ * @description 用于存储setInterval的ID，以便在键盘按下事件中进行清除。初始值为null。
+ */
+let arrowKeyDownInterval = null;
+
+
+/**
+ * @global
  * @var {Object} main_canvas
  * @description Canvas元素。
  */
@@ -109,9 +124,6 @@ const main_canvas = document.getElementById('main_canvas');
  * @description Canvas的2D渲染上下文。
  */
 const ctx = main_canvas.getContext('2d');
-
-
-let arrowKeyDownInterval = null; // 用于存储setInterval的ID
 
 
 /** ====================================================================
@@ -315,11 +327,6 @@ function renderAll() {
         }
     });
 
-    // 如果有选定的点，输出相关信息到控制台
-    if (selectedPoint) {
-        console.log("selected label: " + selectedPointInfo.label);
-        console.log("proximity label: " + proximity.merging_clusters.first_cluster_id);
-    }
 
     // 绘制参考点
     const [firstRefPoint, secondRefPoint] = proximity.ref_points;
@@ -335,7 +342,22 @@ function renderAll() {
         const {x, y} = selectedPoint;
         drawSelectedPoint(x, y);
         document.getElementById("pointInfo").innerHTML = info_text + selectedPointInfo.info;
+
+        // 如果有第二个选定的点，添加额外的信息并画圈
+        if (secondSelectedPoint) {
+            const radius = Math.sqrt((selectedPoint.x - secondSelectedPoint.x) ** 2
+                + (selectedPoint.y - secondSelectedPoint.y) ** 2);
+            drawSelectedPoint(selectedPoint.x, selectedPoint.y, '#eea000', radius);
+            drawSelectedPoint(secondSelectedPoint.x, secondSelectedPoint.y, '#eea000', radius);
+            document.getElementById("Point-Distance").innerHTML = "Point Distance: " + radius.toFixed(2);
+        }
     }
+
+    // 如果不存在第二个选定的点，清除数据板上的信息
+    if (!secondSelectedPoint) {
+        document.getElementById("Point-Distance").innerHTML = "Point Distance:";
+    }
+
 
     // 根据测试结果更新背景颜色
     if (proximity.test_result === 0) {
@@ -446,8 +468,15 @@ function updateGeneralInfo() {
 
     // 更新选中点的信息
     if (selectedPoint) {
-        document.getElementById("Selected-Point").innerHTML =
-            "Selected Point: (" + selectedPoint.x.toFixed(2) + ", " + selectedPoint.y.toFixed(2) + ")";
+        if (secondSelectedPoint) {
+            document.getElementById("Selected-Point").innerHTML =
+                "Selected Point: P1-(" + selectedPoint.x.toFixed(2) + ", " + selectedPoint.y.toFixed(2) + ")"
+                + " P2-(" + secondSelectedPoint.x.toFixed(2) + ", " + secondSelectedPoint.y.toFixed(2) + ")";
+        } else {
+            document.getElementById("Selected-Point").innerHTML =
+                "Selected Point: (" + selectedPoint.x.toFixed(2) + ", " + selectedPoint.y.toFixed(2) + ")";
+        }
+
     } else {
         document.getElementById("Selected-Point").innerHTML = "Selected Point:";
     }
@@ -494,19 +523,25 @@ main_canvas.addEventListener('mousedown', function (event) {
 
     // 如果找到了被点击的现有点
     if (existingPoint) {
-        // 设置选中的点和其在当前帧的信息
-        selectedPoint = existingPoint;
-        selectedPointInfo = selectedPoint.frames[currentFrame];
+        if (selectedPoint && event.ctrlKey) {
+            secondSelectedPoint = existingPoint;
+        } else {
+            // 设置选中的点和其在当前帧的信息
+            selectedPoint = existingPoint;
+            selectedPointInfo = selectedPoint.frames[currentFrame];
+            secondSelectedPoint = null;
 
-        // 如果按下了Shift键，则设置选中的簇
-        if (event.shiftKey) {
-            selectedCluster = selectedPointInfo.label;
+            // 如果按下了Shift键，则设置选中的簇
+            if (event.shiftKey) {
+                selectedCluster = selectedPointInfo.label;
+            }
         }
     } else {
         // 如果没有点被点击，清除选中的簇和点
         selectedCluster = null;
         selectedPoint = null;
         selectedPointInfo = null;
+        secondSelectedPoint = null;
     }
 
     // 更新一般信息和重新渲染
@@ -709,7 +744,7 @@ document.getElementById("next").addEventListener('click', function () {
 /**
  * @description 监听键盘按下事件，并根据按下的键执行相应的函数。
  */
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown', function (event) {
     const key = event.key; // 获取按下的键
 
     // 清除已存在的setInterval
@@ -733,7 +768,7 @@ document.addEventListener('keydown', function(event) {
 /**
  * @description 监听键盘释放事件，并根据释放的键停止相应的setInterval。
  */
-document.addEventListener('keyup', function(event) {
+document.addEventListener('keyup', function (event) {
     const key = event.key; // 获取释放的键
 
     // 如果释放的是左箭头键或右箭头键，清除setInterval
@@ -771,6 +806,7 @@ function clearAll() {
     selectedCluster = null;
     selectedPoint = null;
     selectedPointInfo = null;
+    secondSelectedPoint = null;
 
     // 重置缩放级别和点半径
     zoomLevel = 1;
@@ -787,8 +823,10 @@ function clearAll() {
     document.getElementById("Total-Frames").innerHTML = "Total Frames:";
     document.getElementById("Total-Points").innerHTML = "Total Points:";
     document.getElementById("Selected-Point").innerHTML = "Selected Point:";
+    document.getElementById("Point-Distance").innerHTML = "Point Distance:";
     document.getElementById("pointInfo").innerHTML = "Click on a point to see details here.";
     document.getElementById("general-info").style.backgroundColor = "white";
+
 }
 
 
