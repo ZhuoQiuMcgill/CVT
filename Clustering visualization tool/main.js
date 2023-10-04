@@ -356,6 +356,7 @@ document.getElementById('clear').addEventListener('click', function () {
 
 function clearAll() {
     isCalculating = false;      // 重置 isCalculating 变量
+    doneCalculation = false;
     canvas_points = [];         // 清空点数组
     selectedCluster = null;
     selectedPoint = null;       // 清空选中的点
@@ -449,6 +450,7 @@ function initializeClusterColorMap() {
     pointRadius = importedJSONData.point_radius;
     doneCalculation = true;
     currentFrame = 0;
+    //clusterColorMap[0] = "#000000";
 
     centerCanvasToMassCenter();
 }
@@ -528,6 +530,7 @@ function renderAll() {
     const proximity = importedJSONData.frame_data[currentFrame].proximity;
     let info_text = '';
 
+
     // 渲染每一个点
     importedJSONData.points.forEach(point => {
         const x = point.x;
@@ -553,7 +556,10 @@ function renderAll() {
         }
 
     });
-    console.log(info_text);
+    if(selectedPoint) {
+        console.log("selected label: " + selectedPointInfo.label);
+        console.log("proximity label: " + proximity.merging_clusters.first_cluster_id);
+    }
 
     let firstRefPoint = proximity.ref_points[0];
     let secondRefPoint = proximity.ref_points[1];
