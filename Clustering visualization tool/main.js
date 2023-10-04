@@ -784,10 +784,10 @@ function clearAll() {
     maxPoint = 0;
 
     // 重置信息框内信息
-    document.getElementById("Total-Frames").innerHTML = "";
-    document.getElementById("Total-Points").innerHTML = "";
+    document.getElementById("Total-Frames").innerHTML = "Total Frames:";
+    document.getElementById("Total-Points").innerHTML = "Total Points:";
     document.getElementById("Selected-Point").innerHTML = "Selected Point:";
-    document.getElementById("pointInfo").innerHTML = "";
+    document.getElementById("pointInfo").innerHTML = "Click on a point to see details here.";
     document.getElementById("general-info").style.backgroundColor = "white";
 }
 
