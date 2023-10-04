@@ -21,6 +21,7 @@ let selectedPoint = null; // 用于跟踪当前选中的点
 let selectedPointInfo = null;
 let selectedCluster = null; // 用于跟踪当前选中的cluster
 let colorDistanceLimit = 50; //用于调节对比度
+let preGeneratedColors = [];
 
 // Get the canvas and context for featureB
 const main_canvas = document.getElementById('main_canvas');
@@ -137,6 +138,13 @@ function updateGeneralInfo() {
     if (doneCalculation) {
         document.getElementById("Total-Frames").innerHTML = "Total Frames: " + maxFrame;
         document.getElementById("Total-Points").innerHTML = "Total Points: " + maxPoint;
+        if (selectedPoint) {
+            document.getElementById("Selected-Point").innerHTML =
+                "Selected Point: (" + selectedPoint.x.toFixed(2) +", " + selectedPoint.y.toFixed(2) + ")";
+        } else {
+            document.getElementById("Selected-Point").innerHTML =
+                "Selected Point:";
+        }
     }
 }
 
@@ -162,13 +170,16 @@ main_canvas.addEventListener('mousedown', function (event) {
             if (event.shiftKey) {
                 selectedCluster = selectedPointInfo.label;
             }
-            renderAll();
         } else {
             selectedCluster = null;
             selectedPoint = null;
             selectedPointInfo = null;
-            renderAll();
+
         }
+
+        updateGeneralInfo();
+        renderAll();
+
     } else {
         const existingPoint = canvas_points.find(point => isClicked(point, clickedPoint));
 
@@ -404,7 +415,7 @@ document.getElementById('goto').addEventListener('click', function () {
     currentFrame = parseInt(input.value);
     document.getElementById('gotoPage').value = currentFrame;
     currentFrameData = importedJSONData.frame_data[currentFrame];
-    centerCanvasToRefPoint()
+    centerCanvasToRefPoint();
     updateSelectedPoint()
     renderAll();
 });
@@ -467,10 +478,9 @@ function initializeJsonInfo() {
     clusterColorMap = {};
     maxFrame = importedJSONData.frame_data.length - 1;  // 设置 maxFrame 的值
     maxPoint = importedJSONData.points.length;
-    pointRadius = importedJSONData.point_radius;
     doneCalculation = true;
     currentFrame = 0;
-    //clusterColorMap[0] = "#000000";
+
     updateGeneralInfo();
     centerCanvasToMassCenter();
 }
@@ -504,6 +514,9 @@ function centerCanvasToMassCenter() {
 
     // 更新偏移量以将质量中心设置为画布的中心
     centerCanvas(massCenterX, massCenterY);
+
+    zoomLevel = main_canvas.width / importedJSONData.canvas_size;
+    pointRadius = importedJSONData.point_radius / zoomLevel;
 }
 
 // 更新页面时将镜头转移至ref point中心
@@ -518,6 +531,19 @@ function centerCanvasToRefPoint() {
 }
 
 
+
+
+async function initPredefinedColors() {
+    const response = await fetch('color.csv');
+    const data = await response.text();
+    preGeneratedColors = data.split('\n').map(line => line.trim());
+}
+
+// 在页面加载时初始化预定义的颜色列表
+window.addEventListener('load', () => {
+    initPredefinedColors();
+});
+
 // 用来计算两个颜色之间的距离，用于判断颜色的接近程度
 function colorDistance(color1, color2) {
     const r1 = parseInt(color1.substring(1, 3), 16);
@@ -531,38 +557,22 @@ function colorDistance(color1, color2) {
     return Math.sqrt((r1 - r2) ** 2 + (g1 - g2) ** 2 + (b1 - b2) ** 2);
 }
 
-function generateRandomColor() {
-    let color;
-    let isUnique = false;
-    let isDistinct = true;
+function generateRandomColor(id) {
+    // 使用一个简单的数学运算来“跳过”一些索引
+    const index = (id * 37) % preGeneratedColors.length;
 
-    while (!isUnique || !isDistinct) {
-        color = '#';
-        for (let i = 0; i < 6; i++) {
-            color += '0123456789ABCDEF'[Math.floor(Math.random() * 16)];
-        }
-
-        // 避免生成接近白色的颜色
-        if (colorDistance(color, '#FFFFFF') < colorDistanceLimit ||
-            colorDistance(color, '#0000FF') < colorDistanceLimit ||
-            colorDistance(color, '#FF0000') < colorDistanceLimit) {
-            continue;
-        }
-
-        isUnique = !Object.values(clusterColorMap).includes(color);
-
-        // 确保新颜色与已有颜色有足够的对比度
-        isDistinct = Object.values(clusterColorMap).every(existingColor => colorDistance(color, existingColor) > colorDistanceLimit);
-    }
-
-    return color;
+    return preGeneratedColors[index];
 }
+
+
 
 
 function renderAll() {
     // 清空画布
     clearCanvas();
     applyCanvasTransformations();
+
+    pointRadius = importedJSONData.point_radius / zoomLevel;
 
     const proximity = importedJSONData.frame_data[currentFrame].proximity;
     let info_text = '';
@@ -581,7 +591,7 @@ function renderAll() {
 
         } else {
             if (!clusterColorMap[label]) {
-                clusterColorMap[label] = generateRandomColor();
+                clusterColorMap[label] = generateRandomColor(label);
             }
             const color = clusterColorMap[label];
 

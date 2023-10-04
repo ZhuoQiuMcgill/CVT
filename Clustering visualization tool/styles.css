@@ -85,6 +85,11 @@ body {
     align-items: center; /* 垂直居中 */
 }
 
+#Total-Frames, #Total-Points, #Selected-Point {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
 #top-row h4, #top-row #test_result {
     margin-right: 10px; /* 右边距 */
 }
