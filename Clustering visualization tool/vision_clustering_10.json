@@ -1,0 +1,1027 @@
+{
+    "point_radius": 2.2638462845343543,
+    "points": [
+        {
+            "x": 127.0,
+            "y": 211.5,
+            "frames": [
+                {
+                    "label": 0,
+                    "info": ""
+                },
+                {
+                    "label": 0,
+                    "info": ""
+                },
+                {
+                    "label": 0,
+                    "info": ""
+                },
+                {
+                    "label": 0,
+                    "info": ""
+                },
+                {
+                    "label": 1,
+                    "info": ""
+                },
+                {
+                    "label": 1,
+                    "info": ""
+                },
+                {
+                    "label": 1,
+                    "info": ""
+                },
+                {
+                    "label": 1,
+                    "info": ""
+                },
+                {
+                    "label": 1,
+                    "info": ""
+                },
+                {
+                    "label": 1,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                }
+            ]
+        },
+        {
+            "x": 133.0,
+            "y": 224.5,
+            "frames": [
+                {
+                    "label": 1,
+                    "info": ""
+                },
+                {
+                    "label": 1,
+                    "info": ""
+                },
+                {
+                    "label": 1,
+                    "info": ""
+                },
+                {
+                    "label": 1,
+                    "info": ""
+                },
+                {
+                    "label": 1,
+                    "info": ""
+                },
+                {
+                    "label": 1,
+                    "info": ""
+                },
+                {
+                    "label": 1,
+                    "info": ""
+                },
+                {
+                    "label": 1,
+                    "info": ""
+                },
+                {
+                    "label": 1,
+                    "info": ""
+                },
+                {
+                    "label": 1,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                }
+            ]
+        },
+        {
+            "x": 151.0,
+            "y": 202.5,
+            "frames": [
+                {
+                    "label": 2,
+                    "info": ""
+                },
+                {
+                    "label": 2,
+                    "info": ""
+                },
+                {
+                    "label": 2,
+                    "info": ""
+                },
+                {
+                    "label": 2,
+                    "info": ""
+                },
+                {
+                    "label": 2,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                }
+            ]
+        },
+        {
+            "x": 152.0,
+            "y": 217.5,
+            "frames": [
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                },
+                {
+                    "label": 3,
+                    "info": ""
+                }
+            ]
+        },
+        {
+            "x": 271.0,
+            "y": 124.5,
+            "frames": [
+                {
+                    "label": 4,
+                    "info": ""
+                },
+                {
+                    "label": 4,
+                    "info": ""
+                },
+                {
+                    "label": 4,
+                    "info": ""
+                },
+                {
+                    "label": 4,
+                    "info": ""
+                },
+                {
+                    "label": 4,
+                    "info": ""
+                },
+                {
+                    "label": 4,
+                    "info": ""
+                },
+                {
+                    "label": 4,
+                    "info": ""
+                },
+                {
+                    "label": 6,
+                    "info": ""
+                },
+                {
+                    "label": 6,
+                    "info": ""
+                },
+                {
+                    "label": 6,
+                    "info": ""
+                },
+                {
+                    "label": 6,
+                    "info": ""
+                },
+                {
+                    "label": 6,
+                    "info": ""
+                },
+                {
+                    "label": 6,
+                    "info": ""
+                },
+                {
+                    "label": 6,
+                    "info": ""
+                },
+                {
+                    "label": 6,
+                    "info": ""
+                },
+                {
+                    "label": 6,
+                    "info": ""
+                }
+            ]
+        },
+        {
+            "x": 278.0,
+            "y": 284.5,
+            "frames": [
+                {
+                    "label": 5,
+                    "info": ""
+                },
+                {
+                    "label": 5,
+                    "info": ""
+                },
+                {
+                    "label": 8,
+                    "info": ""
+                },
+                {
+                    "label": 8,
+                    "info": ""
+                },
+                {
+                    "label": 8,
+                    "info": ""
+                },
+                {
+                    "label": 8,
+                    "info": ""
+                },
+                {
+                    "label": 8,
+                    "info": ""
+                },
+                {
+                    "label": 8,
+                    "info": ""
+                },
+                {
+                    "label": 8,
+                    "info": ""
+                },
+                {
+                    "label": 8,
+                    "info": ""
+                },
+                {
+                    "label": 8,
+                    "info": ""
+                },
+                {
+                    "label": 8,
+                    "info": ""
+                },
+                {
+                    "label": 8,
+                    "info": ""
+                },
+                {
+                    "label": 8,
+                    "info": ""
+                },
+                {
+                    "label": 8,
+                    "info": ""
+                },
+                {
+                    "label": 8,
+                    "info": ""
+                }
+            ]
+        },
+        {
+            "x": 282.0,
+            "y": 140.5,
+            "frames": [
+                {
+                    "label": 6,
+                    "info": ""
+                },
+                {
+                    "label": 6,
+                    "info": ""
+                },
+                {
+                    "label": 6,
+                    "info": ""
+                },
+                {
+                    "label": 6,
+                    "info": ""
+                },
+                {
+                    "label": 6,
+                    "info": ""
+                },
+                {
+                    "label": 6,
+                    "info": ""
+                },
+                {
+                    "label": 6,
+                    "info": ""
+                },
+                {
+                    "label": 6,
+                    "info": ""
+                },
+                {
+                    "label": 6,
+                    "info": ""
+                },
+                {
+                    "label": 6,
+                    "info": ""
+                },
+                {
+                    "label": 6,
+                    "info": ""
+                },
+                {
+                    "label": 6,
+                    "info": ""
+                },
+                {
+                    "label": 6,
+                    "info": ""
+                },
+                {
+                    "label": 6,
+                    "info": ""
+                },
+                {
+                    "label": 6,
+                    "info": ""
+                },
+                {
+                    "label": 6,
+                    "info": ""
+                }
+            ]
+        },
+        {
+            "x": 285.0,
+            "y": 123.5,
+            "frames": [
+                {
+                    "label": 7,
+                    "info": ""
+                },
+                {
+                    "label": 9,
+                    "info": ""
+                },
+                {
+                    "label": 9,
+                    "info": ""
+                },
+                {
+                    "label": 9,
+                    "info": ""
+                },
+                {
+                    "label": 9,
+                    "info": ""
+                },
+                {
+                    "label": 9,
+                    "info": ""
+                },
+                {
+                    "label": 9,
+                    "info": ""
+                },
+                {
+                    "label": 9,
+                    "info": ""
+                },
+                {
+                    "label": 9,
+                    "info": ""
+                },
+                {
+                    "label": 9,
+                    "info": ""
+                },
+                {
+                    "label": 9,
+                    "info": ""
+                },
+                {
+                    "label": 9,
+                    "info": ""
+                },
+                {
+                    "label": 9,
+                    "info": ""
+                },
+                {
+                    "label": 9,
+                    "info": ""
+                },
+                {
+                    "label": 9,
+                    "info": ""
+                },
+                {
+                    "label": 9,
+                    "info": ""
+                }
+            ]
+        },
+        {
+            "x": 287.0,
+            "y": 276.5,
+            "frames": [
+                {
+                    "label": 8,
+                    "info": ""
+                },
+                {
+                    "label": 8,
+                    "info": ""
+                },
+                {
+                    "label": 8,
+                    "info": ""
+                },
+                {
+                    "label": 8,
+                    "info": ""
+                },
+                {
+                    "label": 8,
+                    "info": ""
+                },
+                {
+                    "label": 8,
+                    "info": ""
+                },
+                {
+                    "label": 8,
+                    "info": ""
+                },
+                {
+                    "label": 8,
+                    "info": ""
+                },
+                {
+                    "label": 8,
+                    "info": ""
+                },
+                {
+                    "label": 8,
+                    "info": ""
+                },
+                {
+                    "label": 8,
+                    "info": ""
+                },
+                {
+                    "label": 8,
+                    "info": ""
+                },
+                {
+                    "label": 8,
+                    "info": ""
+                },
+                {
+                    "label": 8,
+                    "info": ""
+                },
+                {
+                    "label": 8,
+                    "info": ""
+                },
+                {
+                    "label": 8,
+                    "info": ""
+                }
+            ]
+        },
+        {
+            "x": 294.0,
+            "y": 124.5,
+            "frames": [
+                {
+                    "label": 9,
+                    "info": ""
+                },
+                {
+                    "label": 9,
+                    "info": ""
+                },
+                {
+                    "label": 9,
+                    "info": ""
+                },
+                {
+                    "label": 9,
+                    "info": ""
+                },
+                {
+                    "label": 9,
+                    "info": ""
+                },
+                {
+                    "label": 9,
+                    "info": ""
+                },
+                {
+                    "label": 9,
+                    "info": ""
+                },
+                {
+                    "label": 9,
+                    "info": ""
+                },
+                {
+                    "label": 9,
+                    "info": ""
+                },
+                {
+                    "label": 9,
+                    "info": ""
+                },
+                {
+                    "label": 9,
+                    "info": ""
+                },
+                {
+                    "label": 9,
+                    "info": ""
+                },
+                {
+                    "label": 9,
+                    "info": ""
+                },
+                {
+                    "label": 9,
+                    "info": ""
+                },
+                {
+                    "label": 9,
+                    "info": ""
+                },
+                {
+                    "label": 9,
+                    "info": ""
+                }
+            ]
+        }
+    ],
+    "frame_data": [
+        {
+            "proximity": {
+                "ref_points": [
+                    {
+                        "x": 285.0,
+                        "y": 123.5
+                    },
+                    {
+                        "x": 294.0,
+                        "y": 124.5
+                    }
+                ],
+                "merging_clusters": {
+                    "first_cluster_id": 7,
+                    "second_cluster_id": 9
+                },
+                "info": "<table style=\"font-family: arial, sans-serif; border-collapse: collapse; width: 100%;\">\n<thead>\n<tr>\n<th style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">Proximity</th>\n<th style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">Value</th>\n</tr>\n</thead>\n<tbody>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">merging_type</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">singleton-singleton</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">merging_distance</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">9.055385138137417</td>\n</tr>\n</tbody>\n</table>",
+                "test_result": 1
+            }
+        },
+        {
+            "proximity": {
+                "ref_points": [
+                    {
+                        "x": 278.0,
+                        "y": 284.5
+                    },
+                    {
+                        "x": 287.0,
+                        "y": 276.5
+                    }
+                ],
+                "merging_clusters": {
+                    "first_cluster_id": 5,
+                    "second_cluster_id": 8
+                },
+                "info": "<table style=\"font-family: arial, sans-serif; border-collapse: collapse; width: 100%;\">\n<thead>\n<tr>\n<th style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">Proximity</th>\n<th style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">Value</th>\n</tr>\n</thead>\n<tbody>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">merging_type</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">singleton-singleton</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">merging_distance</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">12.041594578792296</td>\n</tr>\n</tbody>\n</table>",
+                "test_result": 1
+            }
+        },
+        {
+            "proximity": {
+                "ref_points": [
+                    {
+                        "x": 271.0,
+                        "y": 124.5
+                    },
+                    {
+                        "x": 285.0,
+                        "y": 123.5
+                    }
+                ],
+                "merging_clusters": {
+                    "first_cluster_id": 4,
+                    "second_cluster_id": 9
+                },
+                "info": "<table style=\"font-family: arial, sans-serif; border-collapse: collapse; width: 100%;\">\n<thead>\n<tr>\n<th style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">Proximity</th>\n<th style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">Value</th>\n</tr>\n</thead>\n<tbody>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">merging_type</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">singleton-multiton (1)</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_base</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">9.055385138137417</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_ratio</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.5499803303236603/td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03b1</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.0</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03b2</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.042638068809242</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03c1</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.4865947989927464</td>\n</tr>\n</tbody>\n</table>",
+                "test_result": 0
+            }
+        },
+        {
+            "proximity": {
+                "ref_points": [
+                    {
+                        "x": 127.0,
+                        "y": 211.5
+                    },
+                    {
+                        "x": 133.0,
+                        "y": 224.5
+                    }
+                ],
+                "merging_clusters": {
+                    "first_cluster_id": 0,
+                    "second_cluster_id": 1
+                },
+                "info": "<table style=\"font-family: arial, sans-serif; border-collapse: collapse; width: 100%;\">\n<thead>\n<tr>\n<th style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">Proximity</th>\n<th style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">Value</th>\n</tr>\n</thead>\n<tbody>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">merging_type</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">singleton-singleton</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">merging_distance</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">14.317821063276353</td>\n</tr>\n</tbody>\n</table>",
+                "test_result": 1
+            }
+        },
+        {
+            "proximity": {
+                "ref_points": [
+                    {
+                        "x": 151.0,
+                        "y": 202.5
+                    },
+                    {
+                        "x": 152.0,
+                        "y": 217.5
+                    }
+                ],
+                "merging_clusters": {
+                    "first_cluster_id": 2,
+                    "second_cluster_id": 3
+                },
+                "info": "<table style=\"font-family: arial, sans-serif; border-collapse: collapse; width: 100%;\">\n<thead>\n<tr>\n<th style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">Proximity</th>\n<th style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">Value</th>\n</tr>\n</thead>\n<tbody>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">merging_type</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">singleton-singleton</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">merging_distance</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">15.033296378372908</td>\n</tr>\n</tbody>\n</table>",
+                "test_result": 1
+            }
+        },
+        {
+            "proximity": {
+                "ref_points": [
+                    {
+                        "x": 282.0,
+                        "y": 140.5
+                    },
+                    {
+                        "x": 285.0,
+                        "y": 123.5
+                    }
+                ],
+                "merging_clusters": {
+                    "first_cluster_id": 6,
+                    "second_cluster_id": 9
+                },
+                "info": "<table style=\"font-family: arial, sans-serif; border-collapse: collapse; width: 100%;\">\n<thead>\n<tr>\n<th style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">Proximity</th>\n<th style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">Value</th>\n</tr>\n</thead>\n<tbody>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">merging_type</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">singleton-multiton (2)</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_base</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">9.055385138137417</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_ratio</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.9063437102116223/td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03b1</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.0</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03b2</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.0114132146629355</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03c1</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.884831721174349</td>\n</tr>\n</tbody>\n</table>",
+                "test_result": 0
+            }
+        },
+        {
+            "proximity": {
+                "ref_points": [
+                    {
+                        "x": 271.0,
+                        "y": 124.5
+                    },
+                    {
+                        "x": 282.0,
+                        "y": 140.5
+                    }
+                ],
+                "merging_clusters": {
+                    "first_cluster_id": 4,
+                    "second_cluster_id": 6
+                },
+                "info": "<table style=\"font-family: arial, sans-serif; border-collapse: collapse; width: 100%;\">\n<thead>\n<tr>\n<th style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">Proximity</th>\n<th style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">Value</th>\n</tr>\n</thead>\n<tbody>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">merging_type</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">singleton-singleton</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">merging_distance</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">19.4164878389476</td>\n</tr>\n</tbody>\n</table>",
+                "test_result": 1
+            }
+        },
+        {
+            "proximity": {
+                "ref_points": [
+                    {
+                        "x": 282.0,
+                        "y": 140.5
+                    },
+                    {
+                        "x": 285.0,
+                        "y": 123.5
+                    }
+                ],
+                "merging_clusters": {
+                    "first_cluster_id": 6,
+                    "second_cluster_id": 9
+                },
+                "info": "<table style=\"font-family: arial, sans-serif; border-collapse: collapse; width: 100%;\">\n<thead>\n<tr style=\"background-color: #dddddd;\">\n<th style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">Proximity</th>\n<th style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">merging_type</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">multiton-multiton (2 : 2)</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_base_0</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">19.4164878389476</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_ratio_0</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">0.889073072577256</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03b1<sub>0</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.0</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03c1<sub>0</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">0.5201680901012492</td>\n</tr>\n<tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03b2</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.7092034084678291</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_base_1</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">9.055385138137417</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_ratio_1</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.9063437102116223</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03b1<sub>1</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.0</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03c1<sub>1</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.1153404567104825</td>\n</tr>\n</tbody>\n</table>",
+                "test_result": 0
+            }
+        },
+        {
+            "proximity": {
+                "ref_points": [
+                    {
+                        "x": 282.0,
+                        "y": 140.5
+                    },
+                    {
+                        "x": 294.0,
+                        "y": 124.5
+                    }
+                ],
+                "merging_clusters": {
+                    "first_cluster_id": 6,
+                    "second_cluster_id": 9
+                },
+                "info": "<table style=\"font-family: arial, sans-serif; border-collapse: collapse; width: 100%;\">\n<thead>\n<tr style=\"background-color: #dddddd;\">\n<th style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">Proximity</th>\n<th style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">merging_type</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">multiton-multiton (2 : 2)</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_base_0</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">19.4164878389476</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_ratio_0</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.0300524052492095</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03b1<sub>0</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.0</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03c1<sub>0</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">0.6181448058780687</td>\n</tr>\n<tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03b2</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.6663610135589992</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_base_1</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">9.055385138137417</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_ratio_1</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">2.208630521496931</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03b1<sub>1</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.0</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03c1<sub>1</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.3254213843972245</td>\n</tr>\n</tbody>\n</table>",
+                "test_result": 0
+            }
+        },
+        {
+            "proximity": {
+                "ref_points": [
+                    {
+                        "x": 133.0,
+                        "y": 224.5
+                    },
+                    {
+                        "x": 152.0,
+                        "y": 217.5
+                    }
+                ],
+                "merging_clusters": {
+                    "first_cluster_id": 1,
+                    "second_cluster_id": 3
+                },
+                "info": "<table style=\"font-family: arial, sans-serif; border-collapse: collapse; width: 100%;\">\n<thead>\n<tr style=\"background-color: #dddddd;\">\n<th style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">Proximity</th>\n<th style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">merging_type</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">multiton-multiton (2 : 4)</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_base_0</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">14.317821063276353</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_ratio_0</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.414213562373095</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03b1<sub>0</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.0</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03c1<sub>0</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">0.8422929869412911</td>\n</tr>\n<tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03b2</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.6790043183295167</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_base_1</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">15.033296378372908</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_ratio_1</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.3469073064006292</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03b1<sub>1</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.0</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03c1<sub>1</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">0.8022059810666246</td>\n</tr>\n</tbody>\n</table>",
+                "test_result": 1
+            }
+        },
+        {
+            "proximity": {
+                "ref_points": [
+                    {
+                        "x": 271.0,
+                        "y": 124.5
+                    },
+                    {
+                        "x": 294.0,
+                        "y": 124.5
+                    }
+                ],
+                "merging_clusters": {
+                    "first_cluster_id": 6,
+                    "second_cluster_id": 9
+                },
+                "info": "<table style=\"font-family: arial, sans-serif; border-collapse: collapse; width: 100%;\">\n<thead>\n<tr style=\"background-color: #dddddd;\">\n<th style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">Proximity</th>\n<th style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">merging_type</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">multiton-multiton (2 : 2)</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_base_0</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">19.4164878389476</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_ratio_0</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.1845602660365908</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03b1<sub>0</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.0</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03c1<sub>0</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">0.7307835525723781</td>\n</tr>\n<tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03b2</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.6209454384501487</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_base_1</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">9.055385138137417</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_ratio_1</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">2.5399250997214704</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03b1<sub>1</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.0</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03c1<sub>1</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.5669405270975654</td>\n</tr>\n</tbody>\n</table>",
+                "test_result": 0
+            }
+        },
+        {
+            "proximity": {
+                "ref_points": [
+                    {
+                        "x": 282.0,
+                        "y": 140.5
+                    },
+                    {
+                        "x": 287.0,
+                        "y": 276.5
+                    }
+                ],
+                "merging_clusters": {
+                    "first_cluster_id": 6,
+                    "second_cluster_id": 8
+                },
+                "info": "<table style=\"font-family: arial, sans-serif; border-collapse: collapse; width: 100%;\">\n<thead>\n<tr style=\"background-color: #dddddd;\">\n<th style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">Proximity</th>\n<th style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">merging_type</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">multiton-multiton (2 : 2)</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_base_0</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">19.4164878389476</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_ratio_0</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">7.009088453922318</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03b1<sub>0</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.0</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03c1<sub>0</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">7.004541285552775</td>\n</tr>\n<tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03b2</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.000649174326222</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_base_1</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">12.041594578792294</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_ratio_1</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">11.301815539229024</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03b1<sub>1</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.0</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03c1<sub>1</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">11.294483450544991</td>\n</tr>\n</tbody>\n</table>",
+                "test_result": 0
+            }
+        },
+        {
+            "proximity": {
+                "ref_points": [
+                    {
+                        "x": 152.0,
+                        "y": 217.5
+                    },
+                    {
+                        "x": 278.0,
+                        "y": 284.5
+                    }
+                ],
+                "merging_clusters": {
+                    "first_cluster_id": 3,
+                    "second_cluster_id": 8
+                },
+                "info": "<table style=\"font-family: arial, sans-serif; border-collapse: collapse; width: 100%;\">\n<thead>\n<tr style=\"background-color: #dddddd;\">\n<th style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">Proximity</th>\n<th style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">merging_type</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">multiton-multiton (4 : 2)</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_base_0</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">17.25543797668852</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_ratio_0</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">8.270203958761313</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03b1<sub>0</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.5746155373978703</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03c1<sub>0</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">5.187945283266395</td>\n</tr>\n<tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03b2</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.0123863961463377</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_base_1</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">12.041594578792294</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_ratio_1</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">11.851087539212129</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03b1<sub>1</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.0</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03c1<sub>1</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">11.706091255595148</td>\n</tr>\n</tbody>\n</table>",
+                "test_result": 0
+            }
+        },
+        {
+            "proximity": {
+                "ref_points": [
+                    {
+                        "x": 151.0,
+                        "y": 202.5
+                    },
+                    {
+                        "x": 271.0,
+                        "y": 124.5
+                    }
+                ],
+                "merging_clusters": {
+                    "first_cluster_id": 3,
+                    "second_cluster_id": 6
+                },
+                "info": "<table style=\"font-family: arial, sans-serif; border-collapse: collapse; width: 100%;\">\n<thead>\n<tr style=\"background-color: #dddddd;\">\n<th style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">Proximity</th>\n<th style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">merging_type</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">multiton-multiton (4 : 2)</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_base_0</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">16.37367010975178</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_ratio_0</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">8.74100457277922</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03b1<sub>0</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.5746155373978703</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03c1<sub>0</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">5.547266520572123</td>\n</tr>\n<tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03b2</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.0007089470685218</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_base_1</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">19.4164878389476</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_ratio_1</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">7.371174771135962</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03b1<sub>1</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.0</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03c1<sub>1</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">7.365952700562029</td>\n</tr>\n</tbody>\n</table>",
+                "test_result": 0
+            }
+        },
+        {
+            "proximity": {
+                "ref_points": [
+                    {
+                        "x": 287.0,
+                        "y": 276.5
+                    },
+                    {
+                        "x": 294.0,
+                        "y": 124.5
+                    }
+                ],
+                "merging_clusters": {
+                    "first_cluster_id": 8,
+                    "second_cluster_id": 9
+                },
+                "info": "<table style=\"font-family: arial, sans-serif; border-collapse: collapse; width: 100%;\">\n<thead>\n<tr style=\"background-color: #dddddd;\">\n<th style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">Proximity</th>\n<th style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">merging_type</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">multiton-multiton (2 : 2)</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_base_0</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">12.041594578792294</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_ratio_0</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">12.636291468186604</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03b1<sub>0</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.0</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03c1<sub>0</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">12.635051418228484</td>\n</tr>\n<tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03b2</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.0000981436416105</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_base_1</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">9.055385138137417</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_ratio_1</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">16.803382354055547</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03b1<sub>1</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.0</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03c1<sub>1</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">16.801733370757173</td>\n</tr>\n</tbody>\n</table>",
+                "test_result": 0
+            }
+        },
+        {
+            "proximity": {
+                "ref_points": [
+                    {
+                        "x": 151.0,
+                        "y": 202.5
+                    },
+                    {
+                        "x": 285.0,
+                        "y": 123.5
+                    }
+                ],
+                "merging_clusters": {
+                    "first_cluster_id": 3,
+                    "second_cluster_id": 9
+                },
+                "info": "<table style=\"font-family: arial, sans-serif; border-collapse: collapse; width: 100%;\">\n<thead>\n<tr style=\"background-color: #dddddd;\">\n<th style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">Proximity</th>\n<th style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">merging_type</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">multiton-multiton (4 : 2)</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_base_0</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">16.37367010975178</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_ratio_0</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">9.500243265823832</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03b1<sub>0</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.5746155373978703</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03c1<sub>0</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">6.032406178688782</td>\n</tr>\n<tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03b2</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.0001603130617505</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_base_1</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">9.055385138137417</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">distance_ratio_1</td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">17.178048953640182</td>\n</tr>\n<tr>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03b1<sub>1</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">1.0</td>\n</tr>\n<tr style=\"background-color: #dddddd;\">\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">\u03c1<sub>1</sub></td>\n<td style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">17.17529552942739</td>\n</tr>\n</tbody>\n</table>",
+                "test_result": 0
+            }
+        }
+    ]
+}

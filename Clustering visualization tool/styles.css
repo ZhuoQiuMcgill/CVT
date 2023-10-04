@@ -9,7 +9,7 @@ body {
 }
 .container {
     position: relative;
-    max-width: 900px;
+    max-width: 1100px;
     margin: auto;
     padding: 20px;
     display: flex;
@@ -32,16 +32,15 @@ body {
     align-items: flex-start;
 }
 
-#canvas-button-container {
+.tool-button-container {
     background-color: rgba(255, 255, 255, 0.9);
 
     width: 50px;
     height: 600px;
 
-    vertical-align: top;
 
     border: 3px solid #ccc;
-    margin: 5px;
+    margin: 0;
 
 }
 
@@ -59,23 +58,43 @@ body {
     background-color: rgba(255, 255, 255, 0.9);
 
     border: 3px solid #ccc;
-    margin: 5px;
+    margin: 0;
 }
 
 #infoBox {
     background-color: rgba(255, 255, 255, 1);
 
-    width: 200px;
+    width: 400px;
     height: 600px;
 
     vertical-align: top;
     border: 3px solid #ccc;
-    margin: 5px;
+
+    margin-left: 5px;
+
+    overflow: auto;
 }
+
+#general-info {
+    display: flex;
+    flex-direction: column; /* 垂直排列 */
+}
+
+#top-row {
+    display: flex; /* 水平排列 */
+    align-items: center; /* 垂直居中 */
+}
+
+#top-row h4, #top-row #test_result {
+    margin-right: 10px; /* 右边距 */
+}
+
 #test_result {
     width:  20px;
     height: 20px;
-    margin: 5px;
+    margin: 10px;
+
+    border-width: 3px;
 }
 
 

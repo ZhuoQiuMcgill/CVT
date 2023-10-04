@@ -13,6 +13,7 @@ let firstSelectedPoint = null;
 let secondSelectedPoint = null;
 let importedJSONData = null; // 用于存储导入的 JSON 数据
 let maxFrame = 10; // 最大帧数
+let maxPoint = 0;
 let currentFrame = 0; // 当前帧数
 let currentFrameData = null; // 当前帧数据集
 let clusterColorMap = {}; // 动态生成的cluster与颜色的映射
@@ -117,13 +118,25 @@ function isClickedPos(x, y, click_point, radius = pointRadius * 2) {
 }
 
 function updateTotalPoints() {
-    document.getElementById('pointInfo').innerHTML = 'Total points: ' + canvas_points.length;
+    if (doneCalculation) {
+        maxPoint = 0;
+    } else {
+        document.getElementById('pointInfo').innerHTML = 'Total points: ' + canvas_points.length;
+    }
+
 }
 
 // 更新已选择的点的信息
 function updateSelectedPoint() {
     if (selectedPoint) {
         selectedPointInfo = selectedPoint.frames[currentFrame];
+    }
+}
+
+function updateGeneralInfo() {
+    if (doneCalculation) {
+        document.getElementById("Total-Frames").innerHTML = "Total Frames: " + maxFrame;
+        document.getElementById("Total-Points").innerHTML = "Total Points: " + maxPoint;
     }
 }
 
@@ -300,7 +313,7 @@ main_canvas.addEventListener('wheel', function (event) {
 
 /** 镜头移动功能 */
 document.addEventListener('keydown', function (event) {
-    const step = 20;  // 移动步长，您可以根据需要调整这个值
+    const step = 20 / zoomLevel;  // 移动步长，您可以根据需要调整这个值
 
     switch (event.key.toLowerCase()) {
         case 'w':
@@ -371,6 +384,7 @@ function clearAll() {
     importedJSONData = null;    // 清空json
     currentFrameData = null;    // 清空数据缓存
     pointRadius = 4;
+    maxPoint = 0;
 }
 
 
@@ -390,6 +404,7 @@ document.getElementById('goto').addEventListener('click', function () {
     currentFrame = parseInt(input.value);
     document.getElementById('gotoPage').value = currentFrame;
     currentFrameData = importedJSONData.frame_data[currentFrame];
+    centerCanvasToRefPoint()
     updateSelectedPoint()
     renderAll();
 });
@@ -408,6 +423,7 @@ document.getElementById("prev").addEventListener('click', function () {
     }
     document.getElementById('gotoPage').value = currentFrame;
     currentFrameData = importedJSONData.frame_data[currentFrame];
+    centerCanvasToRefPoint()
     updateSelectedPoint()
     renderAll();
 })
@@ -419,6 +435,7 @@ document.getElementById("next").addEventListener('click', function () {
     }
     document.getElementById('gotoPage').value = currentFrame;
     currentFrameData = importedJSONData.frame_data[currentFrame];
+    centerCanvasToRefPoint()
     updateSelectedPoint()
     renderAll();
 })
@@ -435,8 +452,8 @@ document.getElementById('jsonFileInput').addEventListener('change', function (ev
 
                 importedJSONData = JSON.parse(e.target.result);
                 console.log("JSON data imported successfully:", importedJSONData);
-                // 初始化 clusterColorMap
-                initializeClusterColorMap();
+                // 初始化 json information
+                initializeJsonInfo();
             } catch (error) {
                 console.error("Error parsing JSON:", error);
             }
@@ -446,18 +463,26 @@ document.getElementById('jsonFileInput').addEventListener('change', function (ev
 });
 
 // 在导入JSON数据后调用此函数以初始化clusterColorMap
-function initializeClusterColorMap() {
+function initializeJsonInfo() {
     clusterColorMap = {};
     maxFrame = importedJSONData.frame_data.length - 1;  // 设置 maxFrame 的值
+    maxPoint = importedJSONData.points.length;
     pointRadius = importedJSONData.point_radius;
     doneCalculation = true;
     currentFrame = 0;
     //clusterColorMap[0] = "#000000";
-
+    updateGeneralInfo();
     centerCanvasToMassCenter();
 }
 
-// 计算镜头中心点
+
+// 将镜头中心移至x, y
+function  centerCanvas(x, y) {
+    offsetX = main_canvas.width / 2 - x;
+    offsetY = main_canvas.height / 2 - y;
+}
+
+// 初始化时将镜头移至质量中心
 function centerCanvasToMassCenter() {
     let totalX = 0;
     let totalY = 0;
@@ -478,8 +503,18 @@ function centerCanvasToMassCenter() {
     const massCenterY = totalY / pointCount;
 
     // 更新偏移量以将质量中心设置为画布的中心
-    offsetX = main_canvas.width / 2 - massCenterX;
-    offsetY = main_canvas.height / 2 - massCenterY;
+    centerCanvas(massCenterX, massCenterY);
+}
+
+// 更新页面时将镜头转移至ref point中心
+function centerCanvasToRefPoint() {
+    const proximity = importedJSONData.frame_data[currentFrame].proximity;
+    let firstRefPoint = proximity.ref_points[0];
+    let secondRefPoint = proximity.ref_points[1];
+    const massCenterX = (firstRefPoint.x + secondRefPoint.x) / 2;
+    const massCenterY = (firstRefPoint.y + secondRefPoint.y) / 2;
+
+    centerCanvas(massCenterX, massCenterY);
 }
 
 
