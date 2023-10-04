@@ -19,6 +19,7 @@ let clusterColorMap = {}; // 动态生成的cluster与颜色的映射
 let selectedPoint = null; // 用于跟踪当前选中的点
 let selectedPointInfo = null;
 let selectedCluster = null; // 用于跟踪当前选中的cluster
+let colorDistanceLimit = 50; //用于调节对比度
 
 // Get the canvas and context for featureB
 const main_canvas = document.getElementById('main_canvas');
@@ -142,7 +143,7 @@ main_canvas.addEventListener('mousedown', function (event) {
         if (existingPoint) {
             selectedPoint = existingPoint;
             selectedPointInfo = selectedPoint.frames[currentFrame];
-            document.getElementById('pointInfo').innerHTML = selectedPointInfo.info
+            // document.getElementById('pointInfo').innerHTML = selectedPointInfo.info
             if (event.shiftKey) {
                 selectedCluster = selectedPointInfo.label;
             }
@@ -350,6 +351,10 @@ document.getElementById('calculate').addEventListener('click', function () {
 
 /** clear 按钮功能 */
 document.getElementById('clear').addEventListener('click', function () {
+    clearAll();
+});
+
+function clearAll() {
     isCalculating = false;      // 重置 isCalculating 变量
     canvas_points = [];         // 清空点数组
     selectedCluster = null;
@@ -363,8 +368,7 @@ document.getElementById('clear').addEventListener('click', function () {
     importedJSONData = null;    // 清空json
     currentFrameData = null;    // 清空数据缓存
     pointRadius = 4;
-
-});
+}
 
 
 /** goto 按钮功能 */
@@ -420,10 +424,12 @@ document.getElementById("next").addEventListener('click', function () {
 /** 导入json文件 */
 document.getElementById('jsonFileInput').addEventListener('change', function (event) {
     const file = event.target.files[0];
+    clearAll();
     if (file) {
         const reader = new FileReader();
         reader.onload = function (e) {
             try {
+
                 importedJSONData = JSON.parse(e.target.result);
                 console.log("JSON data imported successfully:", importedJSONData);
                 // 初始化 clusterColorMap
@@ -498,14 +504,16 @@ function generateRandomColor() {
         }
 
         // 避免生成接近白色的颜色
-        if (colorDistance(color, '#FFFFFF') < 100) {
+        if (colorDistance(color, '#FFFFFF') < colorDistanceLimit ||
+            colorDistance(color, '#0000FF') < colorDistanceLimit ||
+            colorDistance(color, '#FF0000') < colorDistanceLimit) {
             continue;
         }
 
         isUnique = !Object.values(clusterColorMap).includes(color);
 
         // 确保新颜色与已有颜色有足够的对比度
-        isDistinct = Object.values(clusterColorMap).every(existingColor => colorDistance(color, existingColor) > 100);
+        isDistinct = Object.values(clusterColorMap).every(existingColor => colorDistance(color, existingColor) > colorDistanceLimit);
     }
 
     return color;
@@ -537,7 +545,7 @@ function renderAll() {
             }
             const color = clusterColorMap[label];
 
-            if (point.label === selectedCluster){
+            if (label === selectedCluster) {
                 drawPoint(x, y, color, pointRadius * 1.5);
             } else {
                 drawPoint(x, y, color);

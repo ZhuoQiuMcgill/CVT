@@ -10,7 +10,7 @@
                     "info": "points information"
                 },
                 {
-                    "label": 2,
+                    "label": 3,
                     "info": "points information"
                 }
             ]
@@ -24,7 +24,7 @@
                     "info": "points information"
                 },
                 {
-                    "label": 2,
+                    "label": 3,
                     "info": "points information"
                 }
             ]
@@ -95,17 +95,55 @@
             "proximity": {
                 "ref_points": [
                     {
-                        "x": 56.25,
-                        "y": 65
+                        "x": 40,
+                        "y": 40
                     },
                     {
-                        "x": 98,
-                        "y": 21.05
+                        "x": 40,
+                        "y": 60
                     }
                 ],
                 "merging_clusters": {
                     "first_cluster_id": 2,
                     "second_cluster_id": 3
+                },
+                "info": "proximity info",
+                "test_result": 0
+            }
+        },
+        {
+            "clusters": [
+                {
+                    "id": 0,
+                    "info": "clusters information"
+                },
+                {
+                    "id": 1,
+                    "info": "clusters information"
+                },
+                {
+                    "id": 2,
+                    "info": "clusters information"
+                },
+                {
+                    "id": 3,
+                    "info": "clusters information"
+                }
+            ],
+            "proximity": {
+                "ref_points": [
+                    {
+                        "x": 40,
+                        "y": 60
+                    },
+                    {
+                        "x": 60,
+                        "y": 60
+                    }
+                ],
+                "merging_clusters": {
+                    "first_cluster_id": 3,
+                    "second_cluster_id": 1
                 },
                 "info": "proximity info",
                 "test_result": 0
