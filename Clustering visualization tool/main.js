@@ -575,6 +575,12 @@ function renderAll() {
         document.getElementById("pointInfo").innerHTML = info_text + selectedPointInfo.info;
     }
 
+    if (proximity.test_result === 0) {
+        document.getElementById("test_result").style.backgroundColor = "red";
+    } else {
+        document.getElementById("test_result").style.backgroundColor = "green";
+    }
+
     // 恢复之前保存的绘图状态
     restoreCanvasTransformations();
 }
