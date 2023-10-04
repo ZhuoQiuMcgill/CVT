@@ -30,6 +30,8 @@ const ctx = main_canvas.getContext('2d');
 function applyCanvasTransformations() {
     // 保存当前的绘图状态
     ctx.save();
+    console.log("canvas width: " + main_canvas.width);
+    console.log("canvas height: " + main_canvas.height);
 
     // 应用平移和缩放
     ctx.translate(main_canvas.width / 2, main_canvas.height / 2);
