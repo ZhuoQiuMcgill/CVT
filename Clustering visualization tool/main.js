@@ -110,6 +110,43 @@ let preGeneratedColors = [];
  */
 let arrowKeyDownInterval = null;
 
+/**
+ * @global
+ * @var {boolean} circleMode
+ * @description 用于判断是否进入画圈模式。
+ */
+let circleMode = false;
+
+
+/**
+ * @global
+ * @var {Array} circleModeFrames
+ * @description 画圈模式下的帧数据。
+ */
+let circleModeFrames = [];
+
+/**
+ * @global
+ * @var {number} currentCircleModeFrame
+ * @description 画圈模式下的当前帧数。初始值为0。
+ */
+let currentCircleModeFrame = 0;
+
+/**
+ * @global
+ * @var {number} maxCircleModeFrame
+ * @description 画圈模式下的最大帧数。初始值为0。
+ */
+let maxCircleModeFrame = 0;
+
+
+/**
+ * @global
+ * @var {number} circleModeRadius
+ * @description 画圈模式下的半径。初始值为0。
+ */
+let circleModeRadius = 0;
+
 
 /**
  * @global
@@ -324,6 +361,13 @@ function renderAll() {
             } else {
                 drawPoint(x, y, color);
             }
+
+            // 如果在circleMode中
+            if (circleMode) {
+                if (hasPoint(x, y, circleModeFrames[currentCircleModeFrame])) {
+                    drawSelectedPoint(x, y, "#eea000", circleModeRadius);
+                }
+            }
         }
     });
 
@@ -345,19 +389,10 @@ function renderAll() {
 
         // 如果有第二个选定的点，添加额外的信息并画圈
         if (secondSelectedPoint) {
-            const radius = Math.sqrt((selectedPoint.x - secondSelectedPoint.x) ** 2
-                + (selectedPoint.y - secondSelectedPoint.y) ** 2);
-            drawSelectedPoint(selectedPoint.x, selectedPoint.y, '#eea000', radius);
-            drawSelectedPoint(secondSelectedPoint.x, secondSelectedPoint.y, '#eea000', radius);
-            document.getElementById("Point-Distance").innerHTML = "Point Distance: " + radius.toFixed(2);
+            drawSelectedPoint(selectedPoint.x, selectedPoint.y, '#eea000', circleModeRadius);
+            drawSelectedPoint(secondSelectedPoint.x, secondSelectedPoint.y, '#eea000', circleModeRadius);
         }
     }
-
-    // 如果不存在第二个选定的点，清除数据板上的信息
-    if (!secondSelectedPoint) {
-        document.getElementById("Point-Distance").innerHTML = "Point Distance:";
-    }
-
 
     // 根据测试结果更新背景颜色
     if (proximity.test_result === 0) {
@@ -436,6 +471,65 @@ function isClickedPos(x, y, click_point, radius = pointRadius * 2) {
 }
 
 
+function circleModeCalculation() {
+    currentCircleModeFrame = 0;
+    maxCircleModeFrame = 0;
+    circleModeFrames = [];
+
+    let newPoints = new Map(); //用于储存上一帧新增的点
+    while (true) {
+        let currentFramePoints = new Map();
+        if (maxCircleModeFrame === 0) {
+            addPointToMap(selectedPoint.x, selectedPoint.y, currentFramePoints);
+            addPointToMap(secondSelectedPoint.x, secondSelectedPoint.y, currentFramePoints);
+            circleModeFrames.push(currentFramePoints);
+
+            addPointToMap(selectedPoint.x, selectedPoint.y, newPoints);
+            addPointToMap(secondSelectedPoint.x, secondSelectedPoint.y, newPoints);
+        } else {
+            // 如果上一帧的点是所有的点，则直接退出循环
+            if (circleModeFrames[maxCircleModeFrame - 1].size === maxPoint) {
+                maxCircleModeFrame -= 1;
+                break;
+            }
+
+            let temp = new Map(); //用于储存这一阵新增的点
+            importedJSONData.points.forEach(point => {
+                // 如果点存在上一帧中直接添加
+                if (hasPoint(point.x, point.y, circleModeFrames[maxCircleModeFrame - 1])) {
+                    addPointToMap(point.x, point.y, currentFramePoints);
+                } else {
+                    for (const p of newPoints.values()) {
+                        // 对上一帧新增的点进行一次碰撞箱判断，如果point在碰撞箱内则就添加到Map内
+                        if (isClickedPos(p.x, p.y, point, circleModeRadius)) {
+                            addPointToMap(point.x, point.y, currentFramePoints);
+                            addPointToMap(point.x, point.y, temp);
+                        }
+                    }
+                }
+            })
+
+            // 如果没有新增的点，则直接退出循环
+            if (temp.size === 0) {
+                maxCircleModeFrame -= 1;
+                break;
+            }
+            circleModeFrames.push(currentFramePoints);
+            newPoints = temp;
+        }
+        maxCircleModeFrame += 1;
+    }
+}
+
+function addPointToMap(x, y, myMap) {
+    myMap.set(x + "," + y, {x: x, y: y});
+}
+
+function hasPoint(x, y, myMap) {
+    return myMap.has(x + "," + y);
+}
+
+
 /** ====================================================================
  *  信息更新关功能
  *  ====================================================================
@@ -462,24 +556,33 @@ function updateSelectedPoint() {
  * 该函数会更新HTML元素以显示总帧数、总点数和选中点（如果有）的信息。
  */
 function updateGeneralInfo() {
-    // 更新总帧数和总点数
-    document.getElementById("Total-Frames").innerHTML = "Total Frames: " + maxFrame;
-    document.getElementById("Total-Points").innerHTML = "Total Points: " + maxPoint;
-
     // 更新选中点的信息
     if (selectedPoint) {
         if (secondSelectedPoint) {
             document.getElementById("Selected-Point").innerHTML =
                 "Selected Point: P1-(" + selectedPoint.x.toFixed(2) + ", " + selectedPoint.y.toFixed(2) + ")"
                 + " P2-(" + secondSelectedPoint.x.toFixed(2) + ", " + secondSelectedPoint.y.toFixed(2) + ")";
+            document.getElementById("Point-Distance").innerHTML = "Point Distance: " + circleModeRadius.toFixed(2);
         } else {
             document.getElementById("Selected-Point").innerHTML =
                 "Selected Point: (" + selectedPoint.x.toFixed(2) + ", " + selectedPoint.y.toFixed(2) + ")";
+            document.getElementById("Point-Distance").innerHTML = "Point Distance:";
         }
 
     } else {
         document.getElementById("Selected-Point").innerHTML = "Selected Point:";
     }
+
+
+    // 更新总帧数和总点数
+    if (circleMode) {
+        document.getElementById("Total-Frames").innerHTML = "Total Frames: " + maxCircleModeFrame;
+        document.getElementById("Point-Distance").innerHTML = "Point Distance: " + circleModeRadius.toFixed(2);
+    } else {
+        document.getElementById("Total-Frames").innerHTML = "Total Frames: " + maxFrame;
+    }
+
+    document.getElementById("Total-Points").innerHTML = "Total Points: " + maxPoint;
 }
 
 
@@ -496,6 +599,23 @@ function updateGeneralInfo() {
  */
 function updatePointRadius() {
     pointRadius = importedJSONData.point_radius / zoomLevel;
+}
+
+
+function updateButtonColor() {
+    const but = document.getElementById("circle-mode");
+
+    if (circleMode) {
+        but.style.backgroundColor = 'red';
+        but.innerHTML = 'Exit';
+    } else {
+        if (selectedPoint && secondSelectedPoint) {
+            but.style.backgroundColor = 'green';
+        } else {
+            but.style.backgroundColor = '#007bff';
+        }
+        but.innerHTML = 'Enter';
+    }
 }
 
 
@@ -523,8 +643,10 @@ main_canvas.addEventListener('mousedown', function (event) {
 
     // 如果找到了被点击的现有点
     if (existingPoint) {
-        if (selectedPoint && event.ctrlKey) {
+        if (selectedPoint && event.ctrlKey && !circleMode) {
             secondSelectedPoint = existingPoint;
+            circleModeRadius = Math.sqrt((selectedPoint.x - existingPoint.x) ** 2
+                + (selectedPoint.y - existingPoint.y) ** 2);
         } else {
             // 设置选中的点和其在当前帧的信息
             selectedPoint = existingPoint;
@@ -542,9 +664,15 @@ main_canvas.addEventListener('mousedown', function (event) {
         selectedPoint = null;
         selectedPointInfo = null;
         secondSelectedPoint = null;
+
+        if (!circleMode) {
+            circleModeRadius = 0;
+        }
+
     }
 
     // 更新一般信息和重新渲染
+    updateButtonColor();
     updateGeneralInfo();
     renderAll();
 });
@@ -609,6 +737,32 @@ document.addEventListener('keydown', function (event) {
  *  ====================================================================
  * */
 
+document.getElementById('circle-mode').addEventListener('click', function () {
+    if (circleMode) {
+        // 在circleMode下点击按钮将会退出circleMode并重置数据
+        circleMode = false;
+        selectedPoint = null;
+        secondSelectedPoint = null;
+        circleModeFrames = [];
+        currentCircleModeFrame = 0;
+        maxCircleModeFrame = 0;
+        circleModeRadius = 0;
+
+        document.getElementById("main_canvas").style.borderColor = "#ccc";
+        document.getElementById("gotoPage").value = currentFrame;
+    } else if (selectedPoint && secondSelectedPoint) {
+        circleMode = true;
+        circleModeCalculation();
+
+        document.getElementById("main_canvas").style.borderColor = "#ff0000";
+        document.getElementById("gotoPage").value = currentCircleModeFrame;
+    }
+    updateGeneralInfo();
+    updateButtonColor();
+    renderAll();
+});
+
+
 /**
  * @event click
  * @description 当点击清除按钮时触发。
@@ -650,17 +804,26 @@ document.getElementById('goto').addEventListener('click', function () {
     // 获取输入框元素和其值
     const input = document.getElementById('gotoPage');
 
-    // 设置当前帧为输入值
-    currentFrame = parseInt(input.value);
+    if (circleMode) {
+        // 设置当前帧为输入值
+        currentCircleModeFrame = parseInt(input.value);
 
-    // 更新输入框的值为当前帧
-    document.getElementById('gotoPage').value = currentFrame;
+        // 更新输入框的值为当前帧
+        document.getElementById('gotoPage').value = currentCircleModeFrame;
 
-    // 更新当前帧的数据
-    currentFrameData = importedJSONData.frame_data[currentFrame];
+    } else {
+        // 设置当前帧为输入值
+        currentFrame = parseInt(input.value);
 
-    // 重新定位Canvas到参考点
-    centerCanvasToRefPoint();
+        // 更新输入框的值为当前帧
+        document.getElementById('gotoPage').value = currentFrame;
+
+        // 更新当前帧的数据
+        currentFrameData = importedJSONData.frame_data[currentFrame];
+
+        // 重新定位Canvas到参考点
+        centerCanvasToRefPoint();
+    }
 
     // 更新选中点的信息
     updateSelectedPoint();
@@ -676,22 +839,36 @@ document.getElementById('goto').addEventListener('click', function () {
  * 更新选中点的信息，并重新绘制所有内容。
  */
 function executePrevFunction() {
-    // 跳转到前一帧
-    currentFrame -= 1;
+    if (circleMode) {
+        // 跳转到前一帧
+        currentCircleModeFrame -= 1;
 
-    // 限制当前帧不得小于0
-    if (currentFrame < 0) {
-        currentFrame = 0;
+        // 限制当前帧不得小于0
+        if (currentCircleModeFrame < 0) {
+            currentCircleModeFrame = 0;
+        }
+
+        // 更新输入框的值为当前帧
+        document.getElementById('gotoPage').value = currentCircleModeFrame;
+
+    } else {
+        // 跳转到前一帧
+        currentFrame -= 1;
+
+        // 限制当前帧不得小于0
+        if (currentFrame < 0) {
+            currentFrame = 0;
+        }
+
+        // 更新输入框的值为当前帧
+        document.getElementById('gotoPage').value = currentFrame;
+
+        // 更新当前帧的数据
+        currentFrameData = importedJSONData.frame_data[currentFrame];
+
+        // 重新定位Canvas到参考点
+        centerCanvasToRefPoint();
     }
-
-    // 更新输入框的值为当前帧
-    document.getElementById('gotoPage').value = currentFrame;
-
-    // 更新当前帧的数据
-    currentFrameData = importedJSONData.frame_data[currentFrame];
-
-    // 重新定位Canvas到参考点
-    centerCanvasToRefPoint();
 
     // 更新选中点的信息
     updateSelectedPoint();
@@ -708,21 +885,33 @@ function executePrevFunction() {
  */
 function executeNextFunction() {
     // 跳转到下一帧
-    currentFrame += 1;
+    if (circleMode) {
+        currentCircleModeFrame += 1;
 
-    // 限制当前帧不得大于maxFrame
-    if (currentFrame > maxFrame) {
-        currentFrame = maxFrame;
+        // 限制当前帧不得大于maxFrame
+        if (currentCircleModeFrame > maxCircleModeFrame) {
+            currentCircleModeFrame = maxCircleModeFrame;
+        }
+
+        // 更新输入框的值为当前帧
+        document.getElementById('gotoPage').value = currentCircleModeFrame;
+    } else {
+        currentFrame += 1;
+
+        // 限制当前帧不得大于maxFrame
+        if (currentFrame > maxFrame) {
+            currentFrame = maxFrame;
+        }
+
+        // 更新输入框的值为当前帧
+        document.getElementById('gotoPage').value = currentFrame;
+
+        // 更新当前帧的数据
+        currentFrameData = importedJSONData.frame_data[currentFrame];
+
+        // 重新定位Canvas到参考点
+        centerCanvasToRefPoint();
     }
-
-    // 更新输入框的值为当前帧
-    document.getElementById('gotoPage').value = currentFrame;
-
-    // 更新当前帧的数据
-    currentFrameData = importedJSONData.frame_data[currentFrame];
-
-    // 重新定位Canvas到参考点
-    centerCanvasToRefPoint();
 
     // 更新选中点的信息
     updateSelectedPoint();
@@ -818,6 +1007,13 @@ function clearAll() {
 
     // 重置最大点数
     maxPoint = 0;
+    maxFrame = 0;
+
+    // 重置画圈模式相关数据
+    circleMode = false;
+    maxCircleModeFrame = 0;
+    circleModeRadius = 0;
+    circleModeFrames = [];
 
     // 重置信息框内信息
     document.getElementById("Total-Frames").innerHTML = "Total Frames:";
@@ -826,6 +1022,7 @@ function clearAll() {
     document.getElementById("Point-Distance").innerHTML = "Point Distance:";
     document.getElementById("pointInfo").innerHTML = "Click on a point to see details here.";
     document.getElementById("general-info").style.backgroundColor = "white";
+    document.getElementById("main_canvas").style.borderColor = "#ccc";
 
 }
 
